@@ -36,10 +36,10 @@ export default async function BlogPostPage({ params }: Params) {
     <main className="flex-1">
       <article className="mx-auto max-w-3xl px-6 pt-36 pb-24 lg:px-10 lg:pt-44 lg:pb-32">
         <Reveal immediate>
-          <Link href="/blogs" className="t-body text-black/55 hover:text-black">
+          <Link href="/blogs" className="t-body text-[#7A7A7A] hover:text-black">
             ← Blogs
           </Link>
-          <p className="t-body mt-8 text-black/50">
+          <p className="t-body mt-8 text-[#7A7A7A]">
             {post.date} · {post.time}
           </p>
           <h1 className="t-h2 mt-3">{post.title}</h1>
@@ -65,7 +65,7 @@ export default async function BlogPostPage({ params }: Params) {
         </div>
 
         <Reveal className="mt-14 rounded-2xl bg-[var(--oc-cream)] p-8">
-          <p className="t-body text-black/70">
+          <p className="t-body text-[#7A7A7A]">
             Questions about a formula? Email{" "}
             <a
               className="underline underline-offset-4 hover:text-black"
@@ -90,7 +90,7 @@ export default async function BlogPostPage({ params }: Params) {
               {more.map((p) => (
                 <li key={p.slug}>
                   <Link href={`/blogs/${p.slug}`} className="group block">
-                    <p className="t-body text-black/50">{p.date}</p>
+                    <p className="t-body text-[#7A7A7A]">{p.date}</p>
                     <p className="t-stat group-hover:opacity-70">{p.title}</p>
                   </Link>
                 </li>

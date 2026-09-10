@@ -22,7 +22,7 @@ export default function AboutPage() {
             <h2 className="t-h2">{about.principlesHeading}</h2>
             <div className="mt-7 space-y-5">
               {about.principles.map((p) => (
-                <p key={p.slice(0, 32)} className="t-body text-black/70">
+                <p key={p.slice(0, 32)} className="t-body text-[#7A7A7A]">
                   {p}
                 </p>
               ))}
@@ -59,7 +59,7 @@ export default function AboutPage() {
             <h2 className="t-h2">{about.founder.name}</h2>
             <p className="t-label mt-2 uppercase">{about.founder.role}</p>
             <span className="mt-7 block h-px w-20 bg-black/50" />
-            <p className="t-body mt-7 text-black/70">{about.founder.bio}</p>
+            <p className="t-body mt-7 text-[#7A7A7A]">{about.founder.bio}</p>
 
             <div className="mt-9 flex flex-wrap items-center gap-6">
               <Link

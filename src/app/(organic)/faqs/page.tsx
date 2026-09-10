@@ -30,23 +30,23 @@ export default function FaqPage() {
                     +
                   </span>
                 </summary>
-                <p className="t-body mt-4 max-w-2xl text-black/70">{item.a}</p>
+                <p className="t-body mt-4 max-w-2xl text-[#7A7A7A]">{item.a}</p>
               </details>
             </Reveal>
           ))}
         </div>
 
         <Reveal className="mt-16">
-          <h2 className="t-label text-black/50">Delivery time frames</h2>
+          <h2 className="t-label text-[#7A7A7A]">Delivery time frames</h2>
           <dl className="mt-5 divide-y divide-black/12 border-y border-black/12">
             {shipping.map(([method, time]) => (
               <div key={method} className="t-body flex justify-between gap-6 py-4">
                 <dt>{method}</dt>
-                <dd className="text-black/60">{time}</dd>
+                <dd className="text-[#7A7A7A]">{time}</dd>
               </div>
             ))}
           </dl>
-          <p className="t-body mt-5 text-black/55">
+          <p className="t-body mt-5 text-[#7A7A7A]">
             Our delivery time frames are estimates only and may vary with public holidays,
             possible courier delivery issues, and other influences (such as severe weather
             conditions).
@@ -54,7 +54,7 @@ export default function FaqPage() {
         </Reveal>
 
         <Reveal className="mt-16 rounded-2xl bg-[var(--oc-cream)] p-8">
-          <p className="t-body text-black/70">
+          <p className="t-body text-[#7A7A7A]">
             Still need help? Email{" "}
             <a
               className="underline underline-offset-4 hover:text-black"

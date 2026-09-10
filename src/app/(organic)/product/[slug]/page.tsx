@@ -53,7 +53,7 @@ export default async function ProductPage({ params }: Params) {
   return (
     <main className="flex-1">
       <div className="mx-auto max-w-[1400px] px-6 pt-32 lg:px-10 lg:pt-40">
-        <nav className="t-body text-black/55">
+        <nav className="t-body text-[#7A7A7A]">
           <Link href="/shop" className="hover:text-black">
             Shop
           </Link>
@@ -80,7 +80,7 @@ export default async function ProductPage({ params }: Params) {
                   />
                 }
               />
-              <span className="t-body pointer-events-none absolute bottom-4 left-4 rounded-full bg-white/85 px-4 py-1.5 text-black/70">
+              <span className="t-body pointer-events-none absolute bottom-4 left-4 rounded-full bg-white/85 px-4 py-1.5 text-[#7A7A7A]">
                 Drag to rotate
               </span>
             </div>
@@ -96,7 +96,7 @@ export default async function ProductPage({ params }: Params) {
                 />
               </div>
               <div className="col-span-2 flex flex-col justify-center rounded-xl bg-[var(--oc-cream)] px-6 py-5">
-                <span className="t-body text-black/55">Scent</span>
+                <span className="t-body text-[#7A7A7A]">Scent</span>
                 <p className="t-stat mt-1">{product.scent}</p>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default async function ProductPage({ params }: Params) {
 
           {/* Detail */}
           <div>
-            <p className="t-body text-black/55">{product.scent}</p>
+            <p className="t-body text-[#7A7A7A]">{product.scent}</p>
             <h1 className="t-h2 mt-3">{product.name}</h1>
 
             <div className="mt-6 flex items-center gap-5">
@@ -112,21 +112,21 @@ export default async function ProductPage({ params }: Params) {
               {product.rating ? (
                 <span className="t-body text-[#e8552c]">
                   ★★★★★{" "}
-                  <span className="text-black/55">
+                  <span className="text-[#7A7A7A]">
                     ({product.reviews} review{product.reviews === 1 ? "" : "s"})
                   </span>
                 </span>
               ) : null}
             </div>
 
-            <p className="t-body mt-7 text-black/70">{product.description}</p>
+            <p className="t-body mt-7 text-[#7A7A7A]">{product.description}</p>
 
             {product.includes ? (
               <div className="mt-8 border-t border-black/12 pt-6">
                 <h2 className="t-label">This bundle includes</h2>
                 <ul className="mt-4 space-y-2">
                   {product.includes.map((item) => (
-                    <li key={item} className="t-body text-black/70">
+                    <li key={item} className="t-body text-[#7A7A7A]">
                       – {item}
                     </li>
                   ))}
@@ -136,7 +136,7 @@ export default async function ProductPage({ params }: Params) {
 
             <AddToCart slug={product.slug} />
 
-            <p className="t-body mt-4 text-black/55">
+            <p className="t-body mt-4 text-[#7A7A7A]">
               Free shipping on purchases over 100 dollars. Questions about this formula?{" "}
               <a className="underline underline-offset-4" href={`mailto:${SUPPORT_EMAIL}`}>
                 {SUPPORT_EMAIL}
@@ -181,8 +181,8 @@ export default async function ProductPage({ params }: Params) {
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="grid gap-2 py-6 sm:grid-cols-[170px_1fr] sm:gap-8">
-      <dt className="t-label text-black/50">{label}</dt>
-      <dd className="t-body text-black/70">{children}</dd>
+      <dt className="t-label text-[#7A7A7A]">{label}</dt>
+      <dd className="t-body text-[#7A7A7A]">{children}</dd>
     </div>
   );
 }

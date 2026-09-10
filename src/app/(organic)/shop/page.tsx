@@ -22,7 +22,7 @@ export default function ShopPage() {
       />
 
       <section className="mx-auto max-w-[1400px] px-6 pt-8 pb-24 lg:px-10 lg:pt-12 lg:pb-32">
-        <div className="t-body flex flex-wrap items-center gap-x-8 gap-y-2 border-y border-black/12 py-4 text-black/60">
+        <div className="t-body flex flex-wrap items-center gap-x-8 gap-y-2 border-y border-black/12 py-4 text-[#7A7A7A]">
           <span>{products.length} products</span>
           <span>Fumo di Cocco &amp; Unscented</span>
           <span>Over 98% natural</span>

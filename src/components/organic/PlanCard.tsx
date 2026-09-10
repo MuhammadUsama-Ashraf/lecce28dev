@@ -21,9 +21,9 @@ export default function PlanCard({
       className="flex h-full flex-col rounded-2xl p-7"
       style={{ background: TINTS[index % TINTS.length] }}
     >
-      <p className="t-body text-black/70">{product.name}</p>
+      <p className="t-body text-[#7A7A7A]">{product.name}</p>
       <p className="t-stat mt-3 tabular-nums">{formatPrice(product.price)}</p>
-      <p className="t-body mt-4 text-black/70">{product.tagline}</p>
+      <p className="t-body mt-4 text-[#7A7A7A]">{product.tagline}</p>
 
       <ul className="mt-7 space-y-1.5">
         {(product.includes ?? []).map((item) => (

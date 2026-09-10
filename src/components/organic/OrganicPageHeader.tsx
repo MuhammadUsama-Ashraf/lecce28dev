@@ -28,11 +28,11 @@ export default function OrganicPageHeader({
           className="object-cover"
         />
         <div className="relative flex min-h-[300px] flex-col items-center justify-center px-6 pt-[84px] pb-24 text-center sm:min-h-[360px] lg:min-h-[400px] lg:pb-28">
-          <h1 className="t-h2 text-ink">{kicker}</h1>
+          <h1 className="t-h1 text-ink">{kicker}</h1>
           {accent ? <p className="t-editorial mt-1 text-ink">{accent}</p> : null}
           <span className="mt-5 block h-px w-16 bg-ink/60" />
           {intro ? (
-            <p className="t-body mx-auto mt-6 max-w-xl text-ink-soft">{intro}</p>
+            <p className="t-body mx-auto mt-6 max-w-xl text-[#7A7A7A]">{intro}</p>
           ) : null}
         </div>
 
@@ -69,7 +69,7 @@ export default function OrganicPageHeader({
         />
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative mx-auto max-w-[1400px] px-6 pt-40 pb-24 text-center text-white lg:px-10 lg:pt-52 lg:pb-32">
-          <h1 className="t-h2">{kicker}</h1>
+          <h1 className="t-h1">{kicker}</h1>
           <p className="t-editorial mt-1">{accent}</p>
           {intro ? (
             <p className="t-body mx-auto mt-8 max-w-xl text-white/85">{intro}</p>
@@ -81,10 +81,10 @@ export default function OrganicPageHeader({
 
   return (
     <section className="mx-auto max-w-[1400px] px-6 pt-36 pb-14 text-center lg:px-10 lg:pt-44 lg:pb-16">
-      <h1 className="t-h2">{kicker}</h1>
+      <h1 className="t-h1">{kicker}</h1>
       <p className="t-editorial mt-1">{accent}</p>
       {intro ? (
-        <p className="t-body mx-auto mt-8 max-w-xl text-black/65">{intro}</p>
+        <p className="t-body mx-auto mt-8 max-w-xl text-[#7A7A7A]">{intro}</p>
       ) : null}
     </section>
   );

@@ -117,7 +117,7 @@ export default function OrganicHome() {
           <Reveal>
             <p className="t-editorial">Directions for use</p>
             <h2 className="t-h2 mt-2">The ritual</h2>
-            <p className="t-body mt-5 max-w-sm text-black/65">
+            <p className="t-body mt-5 max-w-sm text-[#7A7A7A]">
               {wash?.directions}
             </p>
             <Link
@@ -211,7 +211,7 @@ export default function OrganicHome() {
                   />
                 </div>
                 <h3 className="t-h3 mt-6">{post.title}</h3>
-                <p className="t-body mt-3 max-w-md text-black/65">{post.excerpt}</p>
+                <p className="t-body mt-3 max-w-md text-[#7A7A7A]">{post.excerpt}</p>
                 <span className="t-body mt-4 inline-block border-b border-black pb-0.5">
                   Read More
                 </span>

@@ -41,11 +41,11 @@ export default function BlogsPage() {
                     className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
                   />
                 </div>
-                <p className="t-body mt-5 text-black/50">
+                <p className="t-body mt-5 text-[#7A7A7A]">
                   {post.date} · {post.time}
                 </p>
                 <h2 className="t-h3 mt-2">{post.title}</h2>
-                <p className="t-body mt-3 text-black/65">{post.excerpt}</p>
+                <p className="t-body mt-3 text-[#7A7A7A]">{post.excerpt}</p>
                 <span className="t-body mt-4 inline-block border-b border-black pb-0.5">
                   Read More
                 </span>
@@ -55,7 +55,7 @@ export default function BlogsPage() {
         </div>
 
         <Reveal className="mt-20 rounded-2xl bg-[var(--oc-cream)] p-8 text-center">
-          <p className="t-body text-black/70">
+          <p className="t-body text-[#7A7A7A]">
             Want us to cover a specific ingredient? Write to{" "}
             <a
               className="underline underline-offset-4 hover:text-black"

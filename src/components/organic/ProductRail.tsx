@@ -121,7 +121,7 @@ export default function ProductRail({
         ))}
       </div>
 
-      {caption ? <p className="t-body mt-6 max-w-xs text-black/60">{caption}</p> : null}
+      {caption ? <p className="t-body mt-6 max-w-xs text-[#7A7A7A]">{caption}</p> : null}
     </div>
   );
 

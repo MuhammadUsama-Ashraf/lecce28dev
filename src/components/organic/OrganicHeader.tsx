@@ -110,7 +110,7 @@ export default function OrganicHeader() {
           <a
             href={`mailto:${SUPPORT_EMAIL}`}
             onClick={() => setMenuOpen(false)}
-            className="t-body py-4 text-black/60"
+            className="t-body py-4 text-[#7A7A7A]"
           >
             {SUPPORT_EMAIL}
           </a>

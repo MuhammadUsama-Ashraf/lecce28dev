@@ -81,7 +81,7 @@ export default function ReviewsCarousel() {
 
         <div>
           <p className="t-stat">{active.name}</p>
-          <p className="t-body mx-auto mt-4 max-w-xl text-black/65">{active.quote}</p>
+          <p className="t-body mx-auto mt-4 max-w-xl text-[#7A7A7A]">{active.quote}</p>
         </div>
       </div>
     </div>

@@ -157,6 +157,16 @@ body {
   text-transform: uppercase;
 }
 
+/* Page-banner title — 46px on the live site, distinct from the 50px
+   section headings below it. */
+.organic .t-h1 {
+  font-family: var(--font-montserrat), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3.2vw, 46px);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
 .organic .t-h2 {
   font-family: var(--font-montserrat), "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;

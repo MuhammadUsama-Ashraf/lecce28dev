@@ -28,7 +28,7 @@ export default function ContactPage() {
 
           <Reveal delay={120} className="space-y-10">
             <div className="rounded-2xl bg-[var(--oc-cream)] p-8">
-              <h2 className="t-label text-black/50">Email</h2>
+              <h2 className="t-label text-[#7A7A7A]">Email</h2>
               <a
                 href={`mailto:${SUPPORT_EMAIL}`}
                 className="t-stat mt-3 block hover:opacity-70"
@@ -38,10 +38,10 @@ export default function ContactPage() {
             </div>
 
             <div className="border-t border-black/12 pt-6">
-              <h2 className="t-label text-black/50">Hours of Operation</h2>
+              <h2 className="t-label text-[#7A7A7A]">Hours of Operation</h2>
               <dl className="mt-4 space-y-2">
                 {site.hours.map(([day, time]) => (
-                  <div key={day} className="t-body flex justify-between gap-6 text-black/70">
+                  <div key={day} className="t-body flex justify-between gap-6 text-[#7A7A7A]">
                     <dt>{day}</dt>
                     <dd className="tabular-nums">{time}</dd>
                   </div>
@@ -50,7 +50,7 @@ export default function ContactPage() {
             </div>
 
             <div className="border-t border-black/12 pt-6">
-              <h2 className="t-label text-black/50">Explore Our Help Center</h2>
+              <h2 className="t-label text-[#7A7A7A]">Explore Our Help Center</h2>
               <ul className="mt-4 space-y-2">
                 {[
                   { href: "/faqs", label: "Help & FAQs" },
@@ -58,7 +58,7 @@ export default function ContactPage() {
                   { href: "/terms-conditions", label: "Terms & Conditions" },
                 ].map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="t-body text-black/70 hover:text-black">
+                    <Link href={l.href} className="t-body text-[#7A7A7A] hover:text-black">
                       {l.label}
                     </Link>
                   </li>
@@ -67,14 +67,14 @@ export default function ContactPage() {
             </div>
 
             <div className="border-t border-black/12 pt-6">
-              <h2 className="t-label text-black/50">Social</h2>
+              <h2 className="t-label text-[#7A7A7A]">Social</h2>
               <ul className="mt-4 space-y-2">
                 <li>
                   <a
                     href={site.social.facebook}
                     target="_blank"
                     rel="noreferrer"
-                    className="t-body text-black/70 hover:text-black"
+                    className="t-body text-[#7A7A7A] hover:text-black"
                   >
                     Facebook
                   </a>
@@ -84,7 +84,7 @@ export default function ContactPage() {
                     href={site.social.instagram}
                     target="_blank"
                     rel="noreferrer"
-                    className="t-body text-black/70 hover:text-black"
+                    className="t-body text-[#7A7A7A] hover:text-black"
                   >
                     Instagram
                   </a>

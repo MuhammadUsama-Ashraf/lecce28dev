@@ -22,7 +22,7 @@ export default function BundleCard({
     >
       <h3 className="t-h3">{product.name}</h3>
       <p
-        className={`t-body mt-2 ${featured ? "text-white/60" : "text-black/55"}`}
+        className={`t-body mt-2 ${featured ? "text-white/60" : "text-[#7A7A7A]"}`}
       >
         {product.scent}
       </p>
@@ -30,7 +30,7 @@ export default function BundleCard({
       <p className="t-stat mt-7 tabular-nums">
         {formatPrice(product.price)}
       </p>
-      <p className={`t-body mt-4 ${featured ? "text-white/70" : "text-black/60"}`}>
+      <p className={`t-body mt-4 ${featured ? "text-white/70" : "text-[#7A7A7A]"}`}>
         {product.tagline}
       </p>
 
@@ -55,7 +55,7 @@ export default function BundleCard({
         <Link
           href={`/product/${product.slug}`}
           className={`t-body mt-4 block text-center underline underline-offset-4 ${
-            featured ? "text-white/70 hover:text-white" : "text-black/60 hover:text-black"
+            featured ? "text-white/70 hover:text-white" : "text-[#7A7A7A] hover:text-black"
           }`}
         >
           View details

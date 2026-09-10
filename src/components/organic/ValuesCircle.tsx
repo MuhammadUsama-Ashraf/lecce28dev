@@ -47,7 +47,7 @@ export default function ValuesCircle() {
                 className="mx-auto h-12 w-12"
               />
               <h3 className="t-label mt-4">{pillar.title}</h3>
-              <p className="t-body mt-3 text-black/65">{pillar.body}</p>
+              <p className="t-body mt-3 text-[#7A7A7A]">{pillar.body}</p>
             </div>
           );
         })}
