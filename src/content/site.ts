@@ -108,14 +108,14 @@ export const about = {
   heading: "About Us",
   principlesHeading: "Our Core Principles",
   principles: [
-    "At Lecce 28, we are dedicated to trust and quality in every aspect of our business, from our product offerings to our customer interactions. We aim to help our customers make educated purchasing decisions that support better health outcomes.",
-    "Lecce 28 is a luxury beauty brand built on naturally derived formulas that drive ingredient education and awareness, with a focus on community, health and wellness through thoughtfully crafted skincare solutions.",
+    "At Lecce 28, we are dedicated to trust and quality in every aspect of our business, from our product offerings to our customer interactions. By leading with these simple principles, we enable our customers to make informed choices which result in healthier purchasing decisions.",
+    "Lecce 28 is a luxury beauty line comprised of exquisite formulas that focus on community, health and well-being. We aspire to lead an industry transformation by way of offering naturally derived formulas that drive ingredient education and awareness.",
     "Conscious beauty has never been more important. Together we will explore and influence the future of skincare.",
   ],
   founder: {
     name: "Angela Giliotti",
-    role: "CEO / Founder",
-    bio: "Angela Giliotti established Lecce28 driven by personal experience with sensitive skin and seasonal eczema, developing effective formulations that addressed these concerns rather than exacerbating them. Drawing from her international experience as an expatriate, she infused the brand's products with global inspiration — making design and scent defining characteristics of everything Lecce 28 makes.",
+    role: "CEO/Founder",
+    bio: "Angela Giliotti, the Founder/CEO of Lecce28, is an enthusiastic advocate of conscious beauty. Through her sensitive skin condition and seasonal eczema, Angela has dedicated herself to developing effective products that work with, not against these concerns. Drawing inspiration from her worldly adventures as an expat, she has incorporated the essence of these experiences into Lecce28 products. With design and scent as a focal point, Angela has crafted exceptional formulas that are truly one-of-a-kind.",
   },
 };
 

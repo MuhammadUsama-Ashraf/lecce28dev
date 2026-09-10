@@ -7,12 +7,51 @@ export default function OrganicPageHeader({
   accent,
   intro,
   image,
+  wave = false,
 }: {
   kicker: string;
   accent: string;
   intro?: string;
   image?: string;
+  /** Silk-textured band closed off by the brand's layered wave. */
+  wave?: boolean;
 }) {
+  if (wave) {
+    return (
+      <section className="relative overflow-hidden bg-sand-300">
+        <Image
+          src="/images/about-2.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="relative flex h-[300px] flex-col items-center justify-center px-6 pt-[84px] text-center sm:h-[360px] lg:h-[400px]">
+          <h1 className="t-h2 text-ink">{kicker}</h1>
+          <span className="mt-5 block h-px w-16 bg-ink/60" />
+        </div>
+
+        <svg
+          viewBox="0 0 1440 190"
+          preserveAspectRatio="none"
+          aria-hidden
+          className="absolute bottom-0 left-0 h-[90px] w-full lg:h-[130px]"
+        >
+          <path
+            d="M0,120 C220,40 420,180 700,110 C960,45 1180,150 1440,80 L1440,190 L0,190 Z"
+            fill="var(--oc-sand)"
+            opacity="0.7"
+          />
+          <path
+            d="M0,150 C240,80 440,200 720,140 C980,85 1200,175 1440,120 L1440,190 L0,190 Z"
+            fill="#ffffff"
+          />
+        </svg>
+      </section>
+    );
+  }
+
   if (image) {
     return (
       <section className="relative overflow-hidden">
