@@ -18,12 +18,12 @@ export default function OrganicTestimonial() {
   const active = testimonials[index];
 
   return (
-    <div className="rounded-3xl bg-sand-100 px-8 py-14 sm:px-16 lg:px-24 lg:py-20">
+    <div className="rounded-3xl bg-[var(--oc-blush)] px-8 py-14 sm:px-16 lg:px-24 lg:py-20">
       <div className="mx-auto max-w-3xl text-center">
         <span className="text-[#e8552c]" aria-label="Rated 5 out of 5">
           ★★★★★
         </span>
-        <blockquote className="mt-8 text-[clamp(1.15rem,2.2vw,1.6rem)] leading-[1.5] font-light">
+        <blockquote className="t-editorial-sm mt-8">
           &ldquo;{active.quote}&rdquo;
         </blockquote>
         <div className="mt-10 flex items-center justify-center gap-4">
@@ -34,7 +34,7 @@ export default function OrganicTestimonial() {
             height={56}
             className="h-12 w-12 rounded-full object-cover"
           />
-          <span className="text-[15px]">{active.name}</span>
+          <span className="t-label">{active.name}</span>
         </div>
 
         <div className="mt-10 flex justify-center gap-2">
@@ -45,7 +45,7 @@ export default function OrganicTestimonial() {
               aria-label={`Show testimonial from ${t.name}`}
               aria-current={i === index}
               className={`h-1.5 rounded-full transition-all ${
-                i === index ? "w-6 bg-ink" : "w-1.5 bg-ink/25 hover:bg-ink/50"
+                i === index ? "w-6 bg-black" : "w-1.5 bg-black/25 hover:bg-black/50"
               }`}
             />
           ))}

@@ -21,17 +21,17 @@ export default function OrganicHeader() {
     };
   }, []);
 
-  const tone = solid ? "text-ink" : "text-white";
+  const tone = solid ? "text-black" : "text-white";
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        solid ? "bg-sand-50/90 backdrop-blur-md" : "bg-transparent"
+        solid ? "bg-white/92 backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center gap-8 px-6 py-5 lg:px-10">
         <Link href="/" aria-label="Lecce 28 home" className={`shrink-0 ${tone}`}>
-          <span className="text-2xl leading-none font-light tracking-[0.02em]">
+          <span className="t-nav text-[26px] leading-none font-semibold tracking-[0.01em]">
             LECCE<span className="font-semibold">28</span>
           </span>
         </Link>
@@ -41,7 +41,7 @@ export default function OrganicHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className={`text-[15px] transition-opacity hover:opacity-70 ${tone}`}
+              className={`t-nav transition-opacity hover:opacity-70 ${tone}`}
             >
               {item.label}
             </Link>
@@ -51,15 +51,15 @@ export default function OrganicHeader() {
         <div className="ml-auto flex items-center gap-4">
           <a
             href={`mailto:${SUPPORT_EMAIL}`}
-            className={`hidden text-[15px] transition-opacity hover:opacity-70 xl:inline ${tone}`}
+            className={`t-body hidden transition-opacity hover:opacity-70 xl:inline ${tone}`}
           >
             {SUPPORT_EMAIL}
           </a>
           <button
             onClick={open}
-            className={`group flex items-center gap-2 rounded-full border px-6 py-2.5 text-[15px] transition-colors ${
+            className={`t-nav group flex items-center gap-2 rounded-full border px-6 py-2 transition-colors ${
               solid
-                ? "border-ink text-ink hover:bg-ink hover:text-sand-50"
+                ? "border-black text-black hover:bg-black hover:text-white"
                 : "border-white/70 text-white hover:bg-white hover:text-ink"
             }`}
           >
@@ -88,7 +88,7 @@ export default function OrganicHeader() {
       </div>
 
       <div
-        className={`overflow-hidden bg-sand-50 lg:hidden ${
+        className={`overflow-hidden bg-white lg:hidden ${
           menuOpen ? "max-h-96" : "max-h-0"
         } transition-[max-height] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]`}
       >
@@ -98,7 +98,7 @@ export default function OrganicHeader() {
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className="border-b border-ink/10 py-4 text-[15px] text-ink last:border-0"
+              className="t-nav border-b border-black/10 py-4 text-black last:border-0"
             >
               {item.label}
             </Link>
@@ -106,7 +106,7 @@ export default function OrganicHeader() {
           <a
             href={`mailto:${SUPPORT_EMAIL}`}
             onClick={() => setMenuOpen(false)}
-            className="py-4 text-sm text-ink-soft"
+            className="t-body py-4 text-black/60"
           >
             {SUPPORT_EMAIL}
           </a>

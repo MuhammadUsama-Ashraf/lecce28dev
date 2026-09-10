@@ -17,31 +17,27 @@ export default function BundleCard({
   return (
     <div
       className={`flex h-full flex-col rounded-3xl p-8 lg:p-10 ${
-        featured ? "bg-[#17120e] text-white" : "bg-sand-100 text-ink"
+        featured ? "bg-black text-white" : "bg-[var(--oc-cream)] text-black"
       }`}
     >
-      <h3 className="text-[19px]">{product.name}</h3>
+      <h3 className="t-h3">{product.name}</h3>
       <p
-        className={`mt-1 text-[14px] ${featured ? "text-white/60" : "text-ink-soft"}`}
+        className={`t-body mt-2 ${featured ? "text-white/60" : "text-black/55"}`}
       >
         {product.scent}
       </p>
 
-      <p className="mt-7 text-[clamp(2rem,3.4vw,2.75rem)] leading-none font-light tabular-nums">
+      <p className="t-stat mt-7 tabular-nums">
         {formatPrice(product.price)}
       </p>
-      <p
-        className={`mt-4 text-[15px] leading-[1.6] ${
-          featured ? "text-white/70" : "text-ink-soft"
-        }`}
-      >
+      <p className={`t-body mt-4 ${featured ? "text-white/70" : "text-black/60"}`}>
         {product.tagline}
       </p>
 
       <ul className="mt-8 space-y-3">
         {(product.includes ?? []).map((item) => (
-          <li key={item} className="flex gap-3 text-[15px]">
-            <span className={featured ? "text-white/50" : "text-ink-soft"}>—</span>
+          <li key={item} className="t-body flex gap-3">
+            <span className={featured ? "text-white/50" : "text-black/45"}>—</span>
             <span className={featured ? "text-white/85" : ""}>{item}</span>
           </li>
         ))}
@@ -50,16 +46,16 @@ export default function BundleCard({
       <div className="mt-auto pt-10">
         <button
           onClick={() => add(product.slug)}
-          className={`w-full rounded-full py-3.5 text-[15px] transition-opacity hover:opacity-85 ${
-            featured ? "bg-white text-ink" : "bg-ink text-sand-50"
+          className={`t-nav w-full rounded-full py-3 transition-opacity hover:opacity-85 ${
+            featured ? "bg-white text-black" : "bg-black text-white"
           }`}
         >
           Add to cart
         </button>
         <Link
           href={`/product/${product.slug}`}
-          className={`mt-4 block text-center text-[14px] underline underline-offset-4 ${
-            featured ? "text-white/70 hover:text-white" : "text-ink-soft hover:text-ink"
+          className={`t-body mt-4 block text-center underline underline-offset-4 ${
+            featured ? "text-white/70 hover:text-white" : "text-black/60 hover:text-black"
           }`}
         >
           View details

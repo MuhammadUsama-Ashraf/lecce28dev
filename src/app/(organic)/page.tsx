@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import BundleCard from "@/components/organic/BundleCard";
+import FollowStrip from "@/components/organic/FollowStrip";
 import OrganicHero from "@/components/organic/OrganicHero";
-import OrganicProductCard from "@/components/organic/OrganicProductCard";
-import OrganicTestimonial from "@/components/organic/OrganicTestimonial";
-import { badges } from "@/components/home/TrustBadges";
+import PlanCard from "@/components/organic/PlanCard";
+import ProductRail from "@/components/organic/ProductRail";
+import ReviewsCarousel from "@/components/organic/ReviewsCarousel";
+import SectionTitle from "@/components/organic/SectionTitle";
+import ValuesCircle from "@/components/organic/ValuesCircle";
 import Reveal from "@/components/ui/Reveal";
 import { getProduct, products } from "@/content/products";
-import { about, journal, philosophy, pillars, SUPPORT_EMAIL } from "@/content/site";
+import { journal, philosophy, site, SUPPORT_EMAIL } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Lecce28 — Elevate your beauty. Embrace your wellness.",
@@ -21,181 +23,210 @@ const bundles = ["shower-bundle", "bellissimo-bundle", "body-bundle"]
   .map(getProduct)
   .filter((p): p is NonNullable<typeof p> => Boolean(p));
 
-const FUMO = products.find((p) => p.fragrance)?.fragrance;
+const wash = getProduct("chamomile-olive-oil");
 
 export default function OrganicHome() {
   return (
     <main className="flex-1">
       <OrganicHero />
 
-      {/* ── Values: four pillars ───────────────────────────────────────── */}
-      <section className="mx-auto max-w-[1400px] px-6 py-24 lg:px-10 lg:py-32">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-          {pillars.map((pillar, i) => (
-            <Reveal key={pillar.title} delay={i * 90}>
-              <Image
-                src={badges[i % badges.length].src}
-                alt=""
-                width={150}
-                height={150}
-                className="h-12 w-12"
-              />
-              <h3 className="mt-7 text-[19px] leading-snug">{pillar.title}</h3>
-              <p className="mt-3 text-[15px] leading-[1.65] text-ink-soft">{pillar.body}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Product showcase ───────────────────────────────────────────── */}
-      <section className="mx-auto max-w-[1400px] px-6 pb-24 lg:px-10 lg:pb-32">
-        <Reveal className="flex flex-wrap items-end justify-between gap-6">
-          <h2 className="max-w-xl text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.05] font-light">
-            Body care, formulated to be worn every day
-          </h2>
-          <Link
-            href="/shop"
-            className="border-b border-ink pb-1 text-[15px] hover:opacity-70"
-          >
-            View all
-          </Link>
-        </Reveal>
-
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {singles.slice(0, 3).map((p, i) => (
-            <Reveal key={p.slug} delay={i * 90}>
-              <OrganicProductCard product={p} priority={i < 3} />
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal className="mt-24">
-          <h2 className="text-[clamp(1.6rem,3vw,2.5rem)] leading-tight font-light">
-            Butters &amp; scrubs
-          </h2>
-        </Reveal>
-
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {singles.slice(3).map((p, i) => (
-            <Reveal key={p.slug} delay={i * 90}>
-              <OrganicProductCard product={p} />
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Awareness / philosophy ─────────────────────────────────────── */}
-      <section className="bg-sand-100 py-24 lg:py-32">
-        <div className="mx-auto max-w-3xl px-6 text-center lg:px-10">
-          <Reveal>
-            <h2 className="text-[clamp(2rem,4.2vw,3.25rem)] leading-[1.1] font-light">
-              {philosophy.heading}
-            </h2>
-            <p className="mt-8 text-[17px] leading-[1.7] text-ink-soft">
-              {philosophy.body}
+      {/* ── Values ─────────────────────────────────────────────────────── */}
+      <section className="mx-auto max-w-[1400px] px-6 pt-20 pb-16 lg:px-10 lg:pt-28">
+        <Reveal className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <h2 className="t-h2 max-w-lg">Naturally derived, conscious</h2>
+            <p className="t-body mt-4 max-w-xs text-black/65">
+              Formulas built on over 98% natural ingredients, free from parabens,
+              phthalates and harsh detergents.
             </p>
-            <p className="mt-8 text-[clamp(1.15rem,2.2vw,1.5rem)] leading-[1.5] font-light italic">
-              &ldquo;Conscious beauty has never been more important. Together we will
-              explore and influence the future of skincare.&rdquo;
+          </div>
+          <p className="t-editorial inline-block border-b border-black pb-2">skincare</p>
+        </Reveal>
+
+        <ValuesCircle />
+      </section>
+
+      {/* ── Explore ────────────────────────────────────────────────────── */}
+      <section className="mx-auto max-w-[1400px] px-6 pt-10 pb-14 lg:px-10">
+        <Reveal>
+          <SectionTitle kicker="Explore" accent="the collection" />
+        </Reveal>
+      </section>
+
+      {/* ── Product rails ──────────────────────────────────────────────── */}
+      <section className="mx-auto max-w-[1400px] space-y-20 px-6 pb-24 lg:px-10 lg:pb-32">
+        <Reveal>
+          <ProductRail
+            kicker="Fumo di Cocco"
+            accent="Body care"
+            caption="One unisex signature runs through the collection, so a full ritual layers rather than competes."
+            items={singles.slice(0, 3)}
+            images={["/template/ritual-1.jpg", "/template/journal-1.jpg"]}
+          />
+        </Reveal>
+
+        <Reveal>
+          <ProductRail
+            kicker="Natural"
+            accent="Butters & scrubs"
+            caption="Over 98% natural, more than 50% oil content, and never a greasy residue."
+            items={singles.slice(3)}
+            reverse
+            images={["/template/ritual-2.jpg", "/template/journal-2.jpg"]}
+          />
+        </Reveal>
+      </section>
+
+      {/* ── Awareness ──────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden">
+        <Image
+          src="/template/awareness.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-black/35" />
+
+        <div className="relative mx-auto max-w-[1400px] px-6 py-28 text-white lg:px-10 lg:py-40">
+          <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+            <Reveal className="min-w-0">
+              <h2 className="text-[clamp(2.75rem,8.5vw,8rem)] leading-[0.92] font-semibold uppercase">
+                Conscious
+                <br />
+                beauty
+              </h2>
+            </Reveal>
+            <Reveal delay={120} className="min-w-0 lg:pt-6">
+              <p className="t-body text-white/85">{philosophy.body}</p>
+            </Reveal>
+          </div>
+
+          <Reveal delay={200} className="mt-20 grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+            <p className="t-editorial-sm">
+              Elevate your beauty. <span className="not-italic">Embrace your wellness.</span>
+            </p>
+            <div>
+              <p className="t-body max-w-lg text-white/85">
+                Lecce 28 is dedicated to trust and quality in every aspect of our business,
+                from our product offerings to our customer interactions. We aim to help our
+                customers make educated purchasing decisions that support better health
+                outcomes.
+              </p>
+              <Link
+                href="/about-us"
+                className="t-body mt-6 inline-block border-b border-white pb-0.5 hover:opacity-80"
+              >
+                Learn more about Lecce 28
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── The ritual (service block) ─────────────────────────────────── */}
+      <section className="mx-auto max-w-[1400px] px-6 py-24 lg:px-10 lg:py-32">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          <Reveal>
+            <p className="t-editorial">Directions for use</p>
+            <h2 className="t-h2 mt-2">The ritual</h2>
+            <p className="t-body mt-5 max-w-sm text-black/65">
+              {wash?.directions}
             </p>
             <Link
-              href="/about-us"
-              className="mt-10 inline-block border-b border-ink pb-1 text-[15px] hover:opacity-70"
+              href="/shop"
+              className="t-body mt-7 inline-block border-b border-black pb-0.5 hover:opacity-70"
             >
-              Learn more
+              Shop all products
             </Link>
           </Reveal>
+
+          <Reveal delay={120} className="relative aspect-[4/5] overflow-hidden">
+            <Image
+              src="/template/service.jpg"
+              alt=""
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </Reveal>
         </div>
       </section>
 
-      {/* ── The scent (services analogue) ──────────────────────────────── */}
-      <section className="mx-auto max-w-[1400px] px-6 py-24 lg:px-10 lg:py-32">
-        <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-24">
+      {/* ── Reviews ────────────────────────────────────────────────────── */}
+      <section className="bg-[var(--oc-grey)] py-24 lg:py-32">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <Reveal>
-            <h2 className="text-[clamp(2rem,4.2vw,3.25rem)] leading-[1.05] font-light">
-              Fumo di Cocco
-            </h2>
-            <p className="mt-6 max-w-sm text-[17px] leading-[1.6] text-ink-soft">
-              One unisex signature runs through the whole collection, so a full ritual
-              layers rather than competes.
-            </p>
+            <SectionTitle kicker="Reviews" accent="Kind words" />
           </Reveal>
-
-          <Reveal delay={140}>
-            <dl className="divide-y divide-ink/12 border-y border-ink/12">
-              {FUMO ? (
-                <>
-                  <NoteRow label="Top" value={FUMO.top} />
-                  <NoteRow label="Middle" value={FUMO.middle} />
-                  <NoteRow label="Base" value={FUMO.base} />
-                </>
-              ) : null}
-              <NoteRow
-                label="Unscented"
-                value="The Natural Body Butter is also offered entirely fragrance-free, with the same over-98% natural formula."
-              />
-            </dl>
+          <Reveal delay={120} className="mt-14">
+            <ReviewsCarousel />
           </Reveal>
         </div>
       </section>
 
-      {/* ── Testimonial ────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-[1400px] px-6 pb-24 lg:px-10 lg:pb-32">
-        <Reveal>
-          <OrganicTestimonial />
-        </Reveal>
-      </section>
+      {/* ── Bundles / pricing ──────────────────────────────────────────── */}
+      <section className="relative overflow-hidden">
+        <Image
+          src="/template/pricing-bg.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-black/15" />
 
-      {/* ── Bundles, three-up ──────────────────────────────────────────── */}
-      <section className="mx-auto max-w-[1400px] px-6 pb-24 lg:px-10 lg:pb-32">
-        <Reveal className="max-w-2xl">
-          <h2 className="text-[clamp(2rem,4.2vw,3.25rem)] leading-[1.05] font-light">
-            Build the whole ritual
-          </h2>
-          <p className="mt-5 text-[17px] leading-[1.6] text-ink-soft">
-            Free shipping on purchases over 100 dollars.
-          </p>
-        </Reveal>
+        <div className="relative mx-auto max-w-[1400px] px-6 py-24 lg:px-10 lg:py-32">
+          <Reveal>
+            <div className="text-center text-white">
+              <h2 className="t-h2">Bundles</h2>
+              <p className="t-editorial mt-1">Build the ritual</p>
+            </div>
+          </Reveal>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
-          {bundles.map((p, i) => (
-            <Reveal key={p.slug} delay={i * 100} className="h-full">
-              <BundleCard product={p} featured={i === 1} />
-            </Reveal>
-          ))}
+          <div className="mt-16 grid gap-6 lg:grid-cols-3 lg:items-start">
+            {bundles.map((p, i) => (
+              <Reveal
+                key={p.slug}
+                delay={i * 110}
+                className={i === 1 ? "lg:mt-16" : i === 2 ? "lg:mt-32" : ""}
+              >
+                <PlanCard product={p} index={i} />
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── Journal ────────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-[1400px] px-6 pb-24 lg:px-10 lg:pb-32">
+      {/* ── Blogs ──────────────────────────────────────────────────────── */}
+      <section className="mx-auto max-w-[1400px] px-6 py-24 lg:px-10 lg:py-32">
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
-          <h2 className="text-[clamp(2rem,4.2vw,3.25rem)] leading-[1.05] font-light">
-            From the journal
-          </h2>
+          <SectionTitle kicker="Blogs" accent="All latest" align="left" />
           <Link
             href="/blogs"
-            className="border-b border-ink pb-1 text-[15px] hover:opacity-70"
+            className="t-body border-b border-black pb-0.5 hover:opacity-70"
           >
-            View all
+            View All
           </Link>
         </Reveal>
 
-        <div className="mt-14 grid gap-8 md:grid-cols-2">
+        <div className="mt-12 grid gap-8 md:grid-cols-2">
           {journal.slice(0, 2).map((post, i) => (
             <Reveal key={post.slug} delay={i * 110} as="article">
-              <Link
-                href={`/blogs/${post.slug}`}
-                className="group block h-full rounded-3xl bg-sand-100 p-8 lg:p-10"
-              >
-                <span className="text-[13px] text-ink-soft">{post.date}</span>
-                <h3 className="mt-4 text-[clamp(1.25rem,2.2vw,1.6rem)] leading-snug font-light">
-                  {post.title}
-                </h3>
-                <p className="mt-4 text-[15px] leading-[1.65] text-ink-soft">
-                  {post.excerpt}
-                </p>
-                <span className="mt-7 inline-block border-b border-ink pb-1 text-[15px] transition-opacity group-hover:opacity-70">
-                  Read more
+              <Link href={`/blogs/${post.slug}`} className="group block">
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src={i === 0 ? "/template/journal-1.jpg" : "/template/journal-2.jpg"}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-[900ms] group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="t-h3 mt-6">{post.title}</h3>
+                <p className="t-body mt-3 max-w-md text-black/65">{post.excerpt}</p>
+                <span className="t-body mt-4 inline-block border-b border-black pb-0.5">
+                  Read More
                 </span>
               </Link>
             </Reveal>
@@ -203,37 +234,33 @@ export default function OrganicHome() {
         </div>
       </section>
 
-      {/* ── Closing CTA ────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-[1400px] px-6 pb-24 lg:px-10 lg:pb-32">
-        <Reveal className="rounded-3xl bg-[#17120e] px-8 py-20 text-center text-white lg:px-16">
-          <h2 className="mx-auto max-w-2xl text-[clamp(1.9rem,4vw,3rem)] leading-[1.1] font-light">
-            {about.principles[2]}
-          </h2>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-5">
-            <Link
-              href="/shop"
-              className="rounded-full bg-white px-9 py-3.5 text-[15px] text-ink transition-opacity hover:opacity-85"
+      {/* ── Follow ─────────────────────────────────────────────────────── */}
+      <section className="bg-[var(--oc-sand)] py-24 lg:py-28">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <Reveal>
+            <SectionTitle kicker="Follow Us" accent="@lecce28_skincare" />
+          </Reveal>
+          <Reveal delay={140} className="mt-16">
+            <a
+              href={site.social.instagram}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Lecce 28 on Instagram"
+              className="block"
             >
-              Shop the collection
-            </Link>
+              <FollowStrip />
+            </a>
+          </Reveal>
+          <Reveal delay={220} className="mt-16 text-center">
             <a
               href={`mailto:${SUPPORT_EMAIL}`}
-              className="border-b border-white/60 pb-1 text-[15px] text-white/85 hover:text-white"
+              className="t-body border-b border-black pb-0.5 hover:opacity-70"
             >
               {SUPPORT_EMAIL}
             </a>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </section>
     </main>
-  );
-}
-
-function NoteRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="grid gap-2 py-7 sm:grid-cols-[150px_1fr] sm:gap-8">
-      <dt className="text-[13px] tracking-[0.18em] text-ink-soft uppercase">{label}</dt>
-      <dd className="text-[17px] leading-[1.6]">{value}</dd>
-    </div>
   );
 }

@@ -37,7 +37,7 @@ export default function OrganicProductCard({
           ref={frame}
           onPointerMove={onMove}
           onPointerLeave={reset}
-          className="tilt relative aspect-[4/5] overflow-hidden rounded-2xl bg-sand-100"
+          className="tilt relative aspect-[4/5] overflow-hidden rounded-2xl bg-[var(--oc-stone)]"
         >
           <Link href={`/product/${product.slug}`} className="block h-full w-full">
             <Image
@@ -51,7 +51,7 @@ export default function OrganicProductCard({
           </Link>
           <button
             onClick={() => add(product.slug)}
-            className="absolute right-4 bottom-4 translate-y-2 rounded-full bg-ink px-5 py-2.5 text-[13px] text-sand-50 opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100"
+            className="t-body absolute right-4 bottom-4 translate-y-2 rounded-full bg-black px-5 py-2.5 text-white opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100"
           >
             Add to cart
           </button>
@@ -59,14 +59,14 @@ export default function OrganicProductCard({
       </div>
 
       <div className="mt-5 flex items-baseline justify-between gap-4">
-        <Link href={`/product/${product.slug}`} className="text-[17px] hover:opacity-70">
+        <Link href={`/product/${product.slug}`} className="t-label hover:opacity-70">
           {product.name}
         </Link>
-        <span className="shrink-0 text-[17px] tabular-nums">
+        <span className="t-label shrink-0 tabular-nums">
           {formatPrice(product.price)}
         </span>
       </div>
-      <span className="mt-1 text-[14px] text-ink-soft">{product.scent}</span>
+      <span className="t-body mt-1 text-black/55">{product.scent}</span>
     </article>
   );
 }

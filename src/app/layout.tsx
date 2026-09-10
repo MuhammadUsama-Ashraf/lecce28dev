@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  Inter,
+  Instrument_Serif,
+  JetBrains_Mono,
+  Poppins,
+  Schibsted_Grotesk,
+} from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/cart/CartProvider";
 import CartDrawer from "@/components/cart/CartDrawer";
@@ -14,6 +21,27 @@ const display = Cormorant_Garamond({
 const sans = Inter({
   variable: "--font-sans-body",
   subsets: ["latin"],
+});
+
+// Stand-ins for the reference's licensed faces:
+// Schibsted Grotesk ~ PP Mori, Instrument Serif Italic ~ PP Editorial New Italic.
+const mori = Schibsted_Grotesk({
+  variable: "--font-mori",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const editorial = Instrument_Serif({
+  variable: "--font-editorial",
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["italic", "normal"],
+});
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 const mono = JetBrains_Mono({
@@ -41,7 +69,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${display.variable} ${sans.variable} ${mono.variable} h-full antialiased`}
+      className={`${display.variable} ${sans.variable} ${mono.variable} ${mori.variable} ${editorial.variable} ${poppins.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-sand-50 text-ink">
         <CartProvider>

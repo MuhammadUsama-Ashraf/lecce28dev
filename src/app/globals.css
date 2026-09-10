@@ -127,3 +127,98 @@ body {
     transform: none !important;
   }
 }
+
+/* ──────────────────────────────────────────────────────────────
+   Organic front page — type scale measured off the reference.
+   Sizes / weights / line-heights are exact; the faces are free
+   stand-ins for the licensed PP Mori and PP Editorial New.
+   Scoped to .organic so the parked classic site is unaffected.
+   ────────────────────────────────────────────────────────────── */
+.organic {
+  --oc-white: #ffffff;
+  --oc-black: #000000;
+  --oc-cream: #fef6ef;
+  --oc-sand: #f8f2ed;
+  --oc-stone: #f1eee6;
+  --oc-blush: #fdebeb;
+  --oc-clay: #f2e1df;
+  --oc-grey: #f5f5f5;
+
+  font-family: var(--font-mori), system-ui, sans-serif;
+  color: var(--oc-black);
+  background: var(--oc-white);
+}
+
+.organic .t-display {
+  font-family: var(--font-mori), sans-serif;
+  font-weight: 600;
+  font-size: clamp(4rem, 13.9vw, 200px);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.organic .t-h2 {
+  font-family: var(--font-mori), sans-serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 3.75vw, 54px);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.organic .t-h3 {
+  font-family: var(--font-mori), sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.65rem, 2.8vw, 40px);
+  line-height: 1.2;
+}
+
+.organic .t-stat {
+  font-family: var(--font-mori), sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.65rem, 2.8vw, 40px);
+  line-height: 1.2;
+}
+
+.organic .t-editorial {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5vw, 72px);
+  line-height: 1;
+}
+
+.organic .t-editorial-sm {
+  font-family: var(--font-editorial), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2rem, 3.33vw, 48px);
+  line-height: 1;
+}
+
+.organic .t-nav {
+  font-family: var(--font-mori), sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.organic .t-link {
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.organic .t-label {
+  font-family: var(--font-mori), sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.organic .t-body {
+  font-family: var(--font-mori), sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+}
