@@ -1,17 +1,28 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nav, SUPPORT_EMAIL } from "@/content/site";
 import { useCart } from "@/components/cart/CartProvider";
 
-/** Solid nav on every route — the hero slides are light-toned artwork, so
- *  white nav text would be unreadable over them. */
+/** Floats transparently over the banner so the artwork runs to the very top
+ *  of the page, then turns solid once scrolling puts content behind it.
+ *  Text stays black throughout — every banner behind it is light-toned. */
 export default function OrganicHeader() {
   const { count, open } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [solid, setSolid] = useState(false);
 
-  const solid = true;
+  useEffect(() => {
+    const onScroll = () => setSolid(window.scrollY > 40);
+    const id = requestAnimationFrame(onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(id);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
   const tone = "text-black";
 
   return (
@@ -48,11 +59,7 @@ export default function OrganicHeader() {
           </a>
           <button
             onClick={open}
-            className={`t-nav group flex items-center gap-2 rounded-full border px-6 py-2 transition-colors ${
-              solid
-                ? "border-black text-black hover:bg-black hover:text-white"
-                : "border-white/70 text-white hover:bg-white hover:text-ink"
-            }`}
+            className="t-nav group flex items-center gap-2 rounded-full border border-black px-6 py-2 text-black transition-colors hover:bg-black hover:text-white"
           >
             Cart{count > 0 ? ` (${count})` : ""}
             <span className="transition-transform group-hover:translate-x-1">→</span>

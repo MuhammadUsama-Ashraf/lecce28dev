@@ -30,8 +30,7 @@ export default function OrganicHero() {
   }, []);
 
   return (
-    // Top padding clears the fixed header, which sits solid above the banner.
-    <div className="bg-white pt-[84px]">
+    <div className="bg-white">
       <section
         aria-roledescription="carousel"
         aria-label="Lecce 28 highlights"
@@ -41,6 +40,8 @@ export default function OrganicHero() {
         onBlur={() => (paused.current = false)}
         className="relative aspect-[1901/727] w-full overflow-hidden bg-[var(--oc-sand)]"
       >
+        {/* keeps the nav legible where it overlaps the artwork */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-28 bg-gradient-to-b from-white/70 to-transparent" />
         {SLIDES.map((slide, i) => (
           <Link
             key={slide.src}
