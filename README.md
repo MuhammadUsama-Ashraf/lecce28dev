@@ -1,36 +1,193 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+# LECCE **28**
 
-First, run the development server:
+### Elevate your beauty. Embrace your wellness.
+
+A luxury body-care storefront built with Next.js, Tailwind and real-time WebGL —
+where the product bottles are modelled in 3D and you can spin them with your cursor.
+
+`Next.js 16` · `React 19` · `TypeScript` · `Tailwind v4` · `three.js`
+
+</div>
+
+---
+
+## Overview
+
+Lecce 28 is a luxury beauty brand built on naturally derived formulas that drive
+ingredient education and awareness. This repository holds its storefront: eight
+products with full INCI ingredient decks, an editorial journal, and a shopping
+cart — wrapped in an editorial design system and an interactive 3D product viewer.
+
+The site ships **two front ends** from one codebase and one content source:
+
+| | Route | What it is |
+|---|---|---|
+| **Current** | `/` | The editorial design — full-bleed hero, oversized wordmark, product rails, floating value cards |
+| **Parked** | `/classic` | A faithful replica of the original lecce28.com home page, kept for reference |
+
+Both share the same product data, cart and inner pages, so nothing has to be
+maintained twice.
+
+---
+
+## Highlights
+
+**Real 3D, not renders.** Every bottle and jar is generated at runtime from lathe
+geometry — amber glass with physical transmission, a black pump cap, and a cream
+label drawn to a canvas texture so it carries the actual product typography
+(`LECCE 28 / CHAMOMILE & OLIVE OIL / BODY WASH / FUMO DI COCCO / 16 fl. oz.`).
+No model files, no external HDR maps.
+
+**It degrades gracefully.** Scenes mount only when they scroll near the viewport,
+and never when the device asks for reduced motion or lacks WebGL — the studio
+photograph takes over instead.
+
+**One source of truth.** Products, copy, FAQs, policies and journal entries all
+live in `src/content/`. Change a price once and it updates the grid, the product
+page, the cart and the bundle cards.
+
+**Cart that survives a refresh.** React context plus `localStorage`, with a slide-over
+drawer, quantity controls and a free-shipping threshold.
+
+**Every page is prerendered.** 23 static routes, no server required.
+
+---
+
+## Getting started
 
 ```bash
+git clone https://github.com/Hatch-Social-Inc/lecce28.git
+cd lecce28
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open **http://localhost:3000**. There are no environment variables to set.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Does |
+|---|---|
+| `npm run dev` | Development server with hot reload |
+| `npm run build` | Production build — prerenders all 23 routes |
+| `npm start` | Serve the production build |
+| `npm run lint` | ESLint across the project |
 
-## Learn More
+Requires Node 20 or newer (developed on 22).
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Routes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+/                       Home — editorial design
+/shop                   All eight products
+/product/[slug]         Product detail with the 3D viewer
+/about-us               Brand principles and founder story
+/blogs                  Journal index
+/blogs/[slug]           Journal entry
+/contact-us             Enquiry form and opening hours
+/faqs                   Questions, delivery table, returns
+/privacy-policy         Privacy policy
+/terms-conditions       Terms and conditions
+/classic                Parked replica of the original site
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+├─ app/
+│  ├─ layout.tsx              Fonts, cart provider, cart drawer
+│  ├─ globals.css             Design tokens + the .organic type scale
+│  ├─ (organic)/              The live site — its own header and footer
+│  │  ├─ page.tsx             Home
+│  │  ├─ shop/  product/  about-us/  blogs/  contact-us/
+│  │  └─ faqs/  privacy-policy/  terms-conditions/
+│  └─ (classic)/              The parked replica and its original chrome
+│     └─ classic/page.tsx
+│
+├─ components/
+│  ├─ three/                  Vessel geometry, label textures, viewers
+│  ├─ organic/                Current design system
+│  ├─ home/  layout/  ui/     Classic-replica components
+│  └─ cart/                   Provider and drawer
+│
+└─ content/
+   ├─ products.ts             Eight products: prices, INCI, directions, specs
+   ├─ site.ts                 Nav, copy, testimonials, FAQs, journal
+   └─ policies.ts             Privacy and terms
+```
+
+Route groups — the parenthesised folders — let the two designs carry different
+headers and footers without changing any URLs.
+
+---
+
+## The 3D layer
+
+| Piece | File |
+|---|---|
+| Bottle and jar geometry, glass material, pump cap | `components/three/Vessel.tsx` |
+| Label artwork drawn to a canvas texture | `components/three/label-texture.ts` |
+| Drag-to-rotate product viewer | `components/three/ProductViewer.tsx` |
+| Lazy mounting and capability checks | `components/three/SceneMount.tsx` |
+
+Lighting is built from drei `Lightformer` rectangles rather than an HDR file, so
+the scenes have no network dependency and no loading flash.
+
+---
+
+## Design system
+
+Type scale, colour tokens and the reveal-on-scroll primitive live in
+`src/app/globals.css`. The current design's scale is scoped under `.organic`, so
+the parked replica keeps its own typography untouched.
+
+```
+.t-display     Hero and footer wordmark, uppercase
+.t-h2          Section headings, uppercase
+.t-h3          Sub-headings
+.t-editorial   Italic serif display
+.t-stat        Prices and large numerals
+.t-nav         Navigation and buttons
+.t-label       Card labels
+.t-body        Body copy
+```
+
+> **A note on fonts.** The reference design uses PP Mori and PP Editorial New,
+> both commercial licences. This build substitutes **Schibsted Grotesk** and
+> **Instrument Serif Italic** at identical sizes, weights and line-heights. If the
+> licensed files are purchased, drop them into `public/fonts/` and swap the two
+> declarations in `src/app/layout.tsx` — nothing else changes.
+
+---
+
+## Deployment
+
+The whole site is statically prerendered, so it deploys anywhere that serves a
+Next.js build:
+
+```bash
+npm run build
+npm start
+```
+
+On Vercel, import the repository and accept the defaults — no configuration and
+no environment variables are required.
+
+---
+
+<div align="center">
+
+**Lecce 28** · Cruelty-free · Over 98% natural · Free shipping over $100
+
+[support@lecce28.com](mailto:support@lecce28.com) ·
+[Instagram](https://www.instagram.com/lecce28_skincare/) ·
+[Facebook](https://www.facebook.com/lecce28)
+
+</div>
