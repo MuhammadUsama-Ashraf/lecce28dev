@@ -45,3 +45,6 @@ _reference/
 
 # template source images (design reference)
 Organic Skincare & Beauty Clinic Framer Template/
+
+# Netlify CLI build artifacts
+.netlify/
