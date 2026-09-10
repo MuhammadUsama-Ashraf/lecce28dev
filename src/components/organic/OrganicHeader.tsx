@@ -1,0 +1,117 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { nav, SUPPORT_EMAIL } from "@/content/site";
+import { useCart } from "@/components/cart/CartProvider";
+
+/** Transparent nav floating over the hero, solid once the page scrolls. */
+export default function OrganicHeader() {
+  const { count, open } = useCart();
+  const [solid, setSolid] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setSolid(window.scrollY > window.innerHeight * 0.75);
+    const id = requestAnimationFrame(onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(id);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  const tone = solid ? "text-ink" : "text-white";
+
+  return (
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
+        solid ? "bg-sand-50/90 backdrop-blur-md" : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex max-w-[1400px] items-center gap-8 px-6 py-5 lg:px-10">
+        <Link href="/" aria-label="Lecce 28 home" className={`shrink-0 ${tone}`}>
+          <span className="text-2xl leading-none font-light tracking-[0.02em]">
+            LECCE<span className="font-semibold">28</span>
+          </span>
+        </Link>
+
+        <nav className="hidden items-center gap-8 lg:flex">
+          {nav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`text-[15px] transition-opacity hover:opacity-70 ${tone}`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="ml-auto flex items-center gap-4">
+          <a
+            href={`mailto:${SUPPORT_EMAIL}`}
+            className={`hidden text-[15px] transition-opacity hover:opacity-70 xl:inline ${tone}`}
+          >
+            {SUPPORT_EMAIL}
+          </a>
+          <button
+            onClick={open}
+            className={`group flex items-center gap-2 rounded-full border px-6 py-2.5 text-[15px] transition-colors ${
+              solid
+                ? "border-ink text-ink hover:bg-ink hover:text-sand-50"
+                : "border-white/70 text-white hover:bg-white hover:text-ink"
+            }`}
+          >
+            Cart{count > 0 ? ` (${count})` : ""}
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </button>
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            className={`flex flex-col gap-1.5 lg:hidden ${tone}`}
+          >
+            <span
+              className={`block h-px w-6 bg-current transition-transform ${
+                menuOpen ? "translate-y-[7px] rotate-45" : ""
+              }`}
+            />
+            <span className={`block h-px w-6 bg-current ${menuOpen ? "opacity-0" : ""}`} />
+            <span
+              className={`block h-px w-6 bg-current transition-transform ${
+                menuOpen ? "-translate-y-[7px] -rotate-45" : ""
+              }`}
+            />
+          </button>
+        </div>
+      </div>
+
+      <div
+        className={`overflow-hidden bg-sand-50 lg:hidden ${
+          menuOpen ? "max-h-96" : "max-h-0"
+        } transition-[max-height] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]`}
+      >
+        <nav className="flex flex-col px-6 py-2">
+          {nav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setMenuOpen(false)}
+              className="border-b border-ink/10 py-4 text-[15px] text-ink last:border-0"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <a
+            href={`mailto:${SUPPORT_EMAIL}`}
+            onClick={() => setMenuOpen(false)}
+            className="py-4 text-sm text-ink-soft"
+          >
+            {SUPPORT_EMAIL}
+          </a>
+        </nav>
+      </div>
+    </header>
+  );
+}
