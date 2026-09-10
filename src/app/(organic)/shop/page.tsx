@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import OrganicPageHeader from "@/components/organic/OrganicPageHeader";
-import OrganicProductCard from "@/components/organic/OrganicProductCard";
-import Reveal from "@/components/ui/Reveal";
-import { products } from "@/content/products";
-import { SUPPORT_EMAIL } from "@/content/site";
+import ShopGrid from "@/components/organic/ShopGrid";
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -24,26 +21,7 @@ export default function ShopPage() {
           </p>
         </div>
 
-        <div className="t-body flex flex-wrap items-center gap-x-8 gap-y-2 border-y border-black/12 py-4 text-[#7A7A7A]">
-          <span>{products.length} products</span>
-          <span>Fumo di Cocco &amp; Unscented</span>
-          <span>Over 98% natural</span>
-          <span>Cruelty-free</span>
-          <a
-            className="underline underline-offset-4 hover:text-black sm:ml-auto"
-            href={`mailto:${SUPPORT_EMAIL}`}
-          >
-            {SUPPORT_EMAIL}
-          </a>
-        </div>
-
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((p, i) => (
-            <Reveal key={p.slug} delay={(i % 3) * 80}>
-              <OrganicProductCard product={p} priority={i < 3} />
-            </Reveal>
-          ))}
-        </div>
+        <ShopGrid />
       </section>
     </main>
   );
