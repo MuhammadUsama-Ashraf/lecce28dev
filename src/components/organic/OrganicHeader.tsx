@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import { nav, SUPPORT_EMAIL } from "@/content/site";
 import { useCart } from "@/components/cart/CartProvider";
 
-/** Floats transparently over the banner so the artwork runs to the very top
- *  of the page, then turns solid once scrolling puts content behind it.
- *  Text stays black throughout — every banner behind it is light-toned. */
+/** Solid on phones, where a transparent nav is unreadable against the hero
+ *  artwork. From lg up it floats over the banner so the artwork runs to the
+ *  top of the page, turning solid once scrolling puts content behind it. */
 export default function OrganicHeader() {
   const { count, open } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,7 +29,9 @@ export default function OrganicHeader() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        solid ? "bg-white/92 backdrop-blur-md" : "bg-transparent"
+        solid
+          ? "bg-white/92 backdrop-blur-md"
+          : "bg-white/95 backdrop-blur-md lg:bg-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center gap-8 px-6 py-5 lg:px-10">
