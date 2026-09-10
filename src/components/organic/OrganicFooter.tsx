@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { footerLinks, site, SUPPORT_EMAIL } from "@/content/site";
-import FooterSubscribe from "./FooterSubscribe";
 
 /** Footer measured off the live site: white ground, 16px black column
  *  headings over a short rule, 15px #54595F links, dotted divider, then the
@@ -94,18 +93,6 @@ export default function OrganicFooter() {
               </Link>
             </li>
           </FooterCol>
-        </div>
-
-        <div className="mt-14 max-w-md">
-          <h2 className="text-[16px] font-bold tracking-[0.02em] text-black uppercase">
-            Stay In The Know
-          </h2>
-          <span className="mt-2 block h-0.5 w-10 bg-black" />
-          <p className="mt-4 text-[15px] leading-relaxed text-[#54595F]">
-            Join our community today and stay up-to-date on the latest Lecce28 news and
-            promotions.
-          </p>
-          <FooterSubscribe />
         </div>
       </div>
 
