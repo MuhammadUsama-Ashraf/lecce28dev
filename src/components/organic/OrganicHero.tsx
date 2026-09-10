@@ -83,22 +83,22 @@ function Slide({ active, children }: { active: boolean; children: React.ReactNod
 function EditorialSlide() {
   return (
     <Link href="/about-us" aria-label="Natural Body Butter — learn more" className="block h-full">
-      {/* phones: square product photography crops to portrait almost losslessly,
-          unlike the wide slide artwork which over-zooms at any setting */}
+      {/* phones: the same slide, cover-cropped tall so the face/coral split
+          lands centre, with the offer set live over it */}
       <div className="relative h-full overflow-hidden lg:hidden">
         <Image
-          src="/products/body-butter.webp"
-          alt="Natural Body Butter Fumo di Cocco"
+          src="/hero/h1-mobile.jpg"
+          alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-[56%_center]"
         />
-        <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/60 via-black/15 to-transparent px-6 pb-11 text-center">
-          <p className="text-[15px] leading-snug tracking-[0.02em] text-white">
+        <div className="absolute inset-x-0 bottom-0 px-5 pb-10 text-center">
+          <p className="text-[15px] leading-snug tracking-[0.02em] text-black">
             Free Shipping For Purchases Over $100
           </p>
-          <span className="mx-auto mt-4 inline-block rounded-full border border-white px-8 py-3 text-[14px] tracking-[0.08em] text-white uppercase">
+          <span className="mt-4 inline-block rounded-full border border-black px-9 py-3 text-[14px] tracking-[0.08em] text-black uppercase">
             {hero.cta}
           </span>
         </div>
@@ -129,21 +129,19 @@ function TrifectaSlide() {
     >
       <div className="relative h-full overflow-hidden lg:hidden">
         <Image
-          src="/products/body-bundle.png"
-          alt="The Lecce 28 body care trifecta"
+          src="/hero/h2.jpg"
+          alt=""
           fill
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-[72%_center]"
         />
-        <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/65 via-black/25 to-transparent px-6 pb-11">
-          <h2 className="text-[26px] leading-[1.12] font-light text-white">
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#efe7dc] via-[#efe7dc]/85 to-transparent px-5 pb-10 pt-20">
+          <h2 className="text-[25px] leading-[1.12] font-light text-black">
             WHERE LUXURY
             <br />
-            <span className="text-[20px]">&amp; SELF-CARE COLLIDE</span>
+            <span className="text-[19px]">&amp; SELF-CARE COLLIDE</span>
           </h2>
-          <p className="mt-3 max-w-[20rem] text-[13px] leading-[1.5] text-white/90">
-            {hero.body}
-          </p>
+          <p className="mt-3 text-[13px] leading-[1.5] text-black/75">{hero.body}</p>
         </div>
       </div>
 
