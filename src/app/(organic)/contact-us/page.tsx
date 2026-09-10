@@ -13,12 +13,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className="flex-1">
-      <OrganicPageHeader
-        kicker="Contact Us"
-        accent="we are listening"
-        intro="We welcome you to submit an online inquiry by filling out the contact form."
-        wave
-      />
+      <OrganicPageHeader kicker="Contact Us" accent="" wave />
 
       <section className="mx-auto max-w-[1400px] px-6 pt-8 pb-24 lg:px-10 lg:pt-12 lg:pb-32">
         <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-24">
@@ -50,7 +45,10 @@ export default function ContactPage() {
             </div>
 
             <div className="border-t border-black/12 pt-6">
-              <h2 className="t-label text-[#7A7A7A]">Explore Our Help Center</h2>
+              <h2 className="t-h2">Explore Our Help Center</h2>
+            <p className="t-body mt-4 text-[#7A7A7A]">
+              We welcome you to submit an online inquiry by filling out the contact form.
+            </p>
               <ul className="mt-4 space-y-2">
                 {[
                   { href: "/faqs", label: "Help & FAQs" },

@@ -20,14 +20,17 @@ const covers = [
 export default function BlogsPage() {
   return (
     <main className="flex-1">
-      <OrganicPageHeader
-        kicker="Blogs"
-        accent="All latest"
-        intro="Naturally derived formulas that drive ingredient education and awareness — what is in the bottle, why it is there, and how to use it."
-        wave
-      />
+      <OrganicPageHeader kicker="Blogs" accent="" wave />
 
       <section className="mx-auto max-w-[1400px] px-6 pt-8 pb-24 lg:px-10 lg:pt-12 lg:pb-32">
+        <div className="mb-12">
+          <div className="flex items-center gap-4">
+            <span className="h-px w-10 bg-black" />
+            <span className="text-[13px] tracking-[0.18em] text-black uppercase">On Top</span>
+          </div>
+          <h2 className="t-h2 mt-3">Recent Stories</h2>
+        </div>
+
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           {journal.map((post, i) => (
             <Reveal key={post.slug} delay={i * 100} as="article">

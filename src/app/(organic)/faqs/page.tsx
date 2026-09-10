@@ -12,14 +12,14 @@ export const metadata: Metadata = {
 export default function FaqPage() {
   return (
     <main className="flex-1">
-      <OrganicPageHeader
-        kicker="FAQ's"
-        accent="good to know"
-        intro="Most frequent questions and answers"
-        wave
-      />
+      <OrganicPageHeader kicker="FAQ's" accent="" wave />
 
       <section className="mx-auto max-w-3xl px-6 pt-8 pb-24 lg:px-10 lg:pt-12 lg:pb-32">
+        <div className="mb-12 text-center">
+          <h2 className="t-h2">Questions</h2>
+          <p className="t-body mt-4 text-[#7A7A7A]">Most frequent questions and answers</p>
+        </div>
+
         <div className="divide-y divide-black/12 border-y border-black/12">
           {faqs.map((item, i) => (
             <Reveal key={item.q} delay={i * 50}>
