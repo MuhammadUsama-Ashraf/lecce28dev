@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { nav, SUPPORT_EMAIL } from "@/content/site";
@@ -33,17 +34,22 @@ export default function OrganicHeader() {
     >
       <div className="mx-auto flex max-w-[1400px] items-center gap-8 px-6 py-5 lg:px-10">
         <Link href="/" aria-label="Lecce 28 home" className={`shrink-0 ${tone}`}>
-          <span className="t-nav text-[26px] leading-none font-semibold tracking-[0.01em]">
-            LECCE<span className="font-semibold">28</span>
-          </span>
+          <Image
+            src="/images/logo.png"
+            alt="Lecce 28"
+            width={261}
+            height={67}
+            priority
+            className="h-[44px] w-auto sm:h-[66.55px]"
+          />
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center lg:flex">
           {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`t-nav transition-opacity hover:opacity-70 ${tone}`}
+              className={`px-[20px] py-[13px] text-[16px] transition-opacity hover:opacity-70 ${tone}`}
             >
               {item.label}
             </Link>

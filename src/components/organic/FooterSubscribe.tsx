@@ -12,7 +12,7 @@ export default function FooterSubscribe() {
         e.preventDefault();
         setDone(true);
       }}
-      className="mt-6 flex items-end gap-4 border-b border-white/40 pb-2"
+      className="mt-6 flex items-end gap-4 border-b border-black/40 pb-2"
     >
       <label htmlFor="footer-email" className="sr-only">
         Your Email
@@ -24,11 +24,11 @@ export default function FooterSubscribe() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Your Email"
-        className="t-body w-full bg-transparent text-white outline-none placeholder:text-white/50"
+        className="w-full bg-transparent text-[15px] text-black outline-none placeholder:text-[#54595F]"
       />
       <button
         type="submit"
-        className="t-body shrink-0 underline underline-offset-4 hover:opacity-70"
+        className="shrink-0 text-[15px] text-black underline underline-offset-4 hover:opacity-70"
       >
         {done ? "Thanks" : "Submit"}
       </button>

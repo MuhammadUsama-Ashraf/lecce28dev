@@ -5,7 +5,7 @@ import {
   Instrument_Serif,
   JetBrains_Mono,
   Poppins,
-  Courier_Prime,
+  Montserrat,
 } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/cart/CartProvider";
@@ -23,12 +23,11 @@ const sans = Inter({
   subsets: ["latin"],
 });
 
-// Courier Prime: a well-hinted Courier revival with true bold and italic.
-const courier = Courier_Prime({
-  variable: "--font-courier",
+// Montserrat is the face the live site sets everything in.
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const editorial = Instrument_Serif({
@@ -69,7 +68,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${display.variable} ${sans.variable} ${mono.variable} ${courier.variable} ${editorial.variable} ${poppins.variable} h-full antialiased`}
+      className={`${display.variable} ${sans.variable} ${mono.variable} ${montserrat.variable} ${editorial.variable} ${poppins.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-sand-50 text-ink">
         <CartProvider>

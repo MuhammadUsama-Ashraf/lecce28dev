@@ -49,24 +49,30 @@ export default function OrganicProductCard({
               className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
             />
           </Link>
-          <button
-            onClick={() => add(product.slug)}
-            className="t-body absolute right-4 bottom-4 translate-y-2 rounded-full bg-black px-5 py-2.5 text-white opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100"
-          >
-            Add to cart
-          </button>
+
         </div>
       </div>
 
-      <div className="mt-5 flex items-baseline justify-between gap-4">
-        <Link href={`/product/${product.slug}`} className="t-label hover:opacity-70">
-          {product.name}
-        </Link>
-        <span className="t-label shrink-0 tabular-nums">
-          {formatPrice(product.price)}
-        </span>
-      </div>
-      <span className="t-body mt-1 text-black/55">{product.scent}</span>
+      {/* Metrics follow the live cards: 15px title, 12px price, 15px button */}
+      <Link
+        href={`/product/${product.slug}`}
+        className="mt-4 block py-[7.5px] text-[15px] leading-snug font-bold tracking-[0.02em] text-black uppercase hover:opacity-70"
+      >
+        {product.name}
+      </Link>
+      <span className="block text-[13px] tracking-[0.06em] text-[#7A7A7A] uppercase">
+        {product.scent}
+      </span>
+      <span className="mt-2 block text-[12px] tabular-nums text-black">
+        {formatPrice(product.price)}
+      </span>
+
+      <button
+        onClick={() => add(product.slug)}
+        className="mt-4 self-start rounded-full border border-black/70 bg-white px-[20px] py-[15px] text-[15px] tracking-[0.04em] text-black uppercase transition-colors hover:bg-black hover:text-white"
+      >
+        Add to cart
+      </button>
     </article>
   );
 }
