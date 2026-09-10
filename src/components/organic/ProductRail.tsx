@@ -34,7 +34,7 @@ export default function ProductRail({
   };
 
   const media = (
-    <div className="grid grid-cols-1 gap-2">
+    <div className="grid min-w-0 grid-cols-1 gap-2">
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={images[0]}
@@ -57,7 +57,7 @@ export default function ProductRail({
   );
 
   const rows = (
-    <div>
+    <div className="min-w-0">
       <div className="flex items-start justify-between gap-6">
         <div>
           <h3 className="t-stat">{kicker}</h3>
@@ -129,8 +129,8 @@ export default function ProductRail({
     <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
       {reverse ? (
         <>
-          <div className="order-2 lg:order-1">{rows}</div>
-          <div className="order-1 lg:order-2">{media}</div>
+          <div className="order-2 min-w-0 lg:order-1">{rows}</div>
+          <div className="order-1 min-w-0 lg:order-2">{media}</div>
         </>
       ) : (
         <>

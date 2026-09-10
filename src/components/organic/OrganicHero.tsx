@@ -16,7 +16,7 @@ export default function OrganicHero() {
       />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/25" />
 
-      <div className="relative mt-auto w-full px-6 pb-3 lg:px-10">
+      <div className="relative mt-auto w-full px-6 pb-6 lg:px-10 lg:pb-3">
         <p className="t-body max-w-sm text-white">{site.tagline}</p>
         <Link
           href="/shop"

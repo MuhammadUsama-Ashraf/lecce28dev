@@ -5,7 +5,7 @@ import {
   Instrument_Serif,
   JetBrains_Mono,
   Poppins,
-  Schibsted_Grotesk,
+  Courier_Prime,
 } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/cart/CartProvider";
@@ -23,12 +23,12 @@ const sans = Inter({
   subsets: ["latin"],
 });
 
-// Stand-ins for the reference's licensed faces:
-// Schibsted Grotesk ~ PP Mori, Instrument Serif Italic ~ PP Editorial New Italic.
-const mori = Schibsted_Grotesk({
-  variable: "--font-mori",
+// Courier Prime: a well-hinted Courier revival with true bold and italic.
+const courier = Courier_Prime({
+  variable: "--font-courier",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
 });
 
 const editorial = Instrument_Serif({
@@ -69,7 +69,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${display.variable} ${sans.variable} ${mono.variable} ${mori.variable} ${editorial.variable} ${poppins.variable} h-full antialiased`}
+      className={`${display.variable} ${sans.variable} ${mono.variable} ${courier.variable} ${editorial.variable} ${poppins.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-sand-50 text-ink">
         <CartProvider>

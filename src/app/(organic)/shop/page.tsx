@@ -27,7 +27,7 @@ export default function ShopPage() {
           <span>Over 98% natural</span>
           <span>Cruelty-free</span>
           <a
-            className="ml-auto underline underline-offset-4 hover:text-black"
+            className="underline underline-offset-4 hover:text-black sm:ml-auto"
             href={`mailto:${SUPPORT_EMAIL}`}
           >
             {SUPPORT_EMAIL}

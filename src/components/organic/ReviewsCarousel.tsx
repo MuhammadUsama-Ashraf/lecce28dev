@@ -20,7 +20,7 @@ export default function ReviewsCarousel() {
         <svg
           viewBox="0 0 460 520"
           aria-hidden
-          className="pointer-events-none absolute h-[420px] w-[380px] sm:h-[520px] sm:w-[460px]"
+          className="pointer-events-none absolute aspect-[460/520] w-[min(380px,90vw)] sm:w-[460px]"
         >
           <ellipse
             cx="230"
