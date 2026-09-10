@@ -7,7 +7,7 @@ import { badges } from "@/components/home/TrustBadges";
 export default function BadgeRow() {
   return (
     <section aria-label="Product standards" className="bg-white py-14 lg:py-20">
-      <ul className="mx-auto grid max-w-5xl grid-cols-3 items-center justify-items-center gap-x-4 gap-y-8 px-6 sm:grid-cols-6 sm:gap-x-6 lg:gap-x-8">
+      <ul className="mx-auto grid max-w-6xl grid-cols-3 items-center justify-items-center gap-x-4 gap-y-8 px-6 sm:grid-cols-6 sm:gap-x-6 lg:gap-x-8">
         {badges.map((badge) => (
           <li key={badge.label} className="w-full">
             <Image
@@ -16,7 +16,7 @@ export default function BadgeRow() {
               title={badge.label}
               width={150}
               height={150}
-              className="mx-auto aspect-square w-full max-w-[120px] transition-transform duration-500 hover:scale-105"
+              className="mx-auto aspect-square w-full max-w-[150px] transition-transform duration-500 hover:scale-105"
             />
           </li>
         ))}
