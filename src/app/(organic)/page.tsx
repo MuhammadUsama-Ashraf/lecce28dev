@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import FollowStrip from "@/components/organic/FollowStrip";
+import BadgeRow from "@/components/organic/BadgeRow";
 import OrganicHero from "@/components/organic/OrganicHero";
 import PlanCard from "@/components/organic/PlanCard";
 import ProductRail from "@/components/organic/ProductRail";
 import ReviewsCarousel from "@/components/organic/ReviewsCarousel";
 import SectionTitle from "@/components/organic/SectionTitle";
-import ValuesCircle from "@/components/organic/ValuesCircle";
 import Reveal from "@/components/ui/Reveal";
 import { getProduct, products } from "@/content/products";
 import { journal, philosophy, site, SUPPORT_EMAIL } from "@/content/site";
@@ -30,21 +30,8 @@ export default function OrganicHome() {
     <main className="flex-1">
       <OrganicHero />
 
-      {/* ── Values ─────────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-[1400px] px-6 pt-20 pb-16 lg:px-10 lg:pt-28">
-        <Reveal className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
-          <div>
-            <h2 className="t-h2 max-w-lg">Naturally derived, conscious</h2>
-            <p className="t-body mt-4 max-w-xs text-black/65">
-              Formulas built on over 98% natural ingredients, free from parabens,
-              phthalates and harsh detergents.
-            </p>
-          </div>
-          <p className="t-editorial inline-block border-b border-black pb-2">skincare</p>
-        </Reveal>
-
-        <ValuesCircle />
-      </section>
+      {/* ── Brand standards ────────────────────────────────────────────── */}
+      <BadgeRow />
 
       {/* ── Explore ────────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-[1400px] px-6 pt-10 pb-14 lg:px-10">
