@@ -17,9 +17,10 @@ export default function ContactPage() {
         kicker="Contact Us"
         accent="we are listening"
         intro="We welcome you to submit an online inquiry by filling out the contact form."
+        wave
       />
 
-      <section className="mx-auto max-w-[1400px] px-6 pb-24 lg:px-10 lg:pb-32">
+      <section className="mx-auto max-w-[1400px] px-6 pt-8 pb-24 lg:px-10 lg:pt-12 lg:pb-32">
         <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-24">
           <Reveal>
             <ContactForm />

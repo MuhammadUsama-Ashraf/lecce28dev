@@ -18,9 +18,10 @@ export default function ShopPage() {
         kicker="Shop"
         accent="the collection"
         intro="Your daily dose of nature's nourishment for a luminous complexion."
+        wave
       />
 
-      <section className="mx-auto max-w-[1400px] px-6 pb-24 lg:px-10 lg:pb-32">
+      <section className="mx-auto max-w-[1400px] px-6 pt-8 pb-24 lg:px-10 lg:pt-12 lg:pb-32">
         <div className="t-body flex flex-wrap items-center gap-x-8 gap-y-2 border-y border-black/12 py-4 text-black/60">
           <span>{products.length} products</span>
           <span>Fumo di Cocco &amp; Unscented</span>

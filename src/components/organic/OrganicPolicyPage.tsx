@@ -16,9 +16,9 @@ export default function OrganicPolicyPage({
 }) {
   return (
     <main className="flex-1">
-      <OrganicPageHeader kicker={kicker} accent={accent} />
+      <OrganicPageHeader kicker={kicker} accent={accent} wave />
 
-      <section className="mx-auto max-w-3xl px-6 pb-24 lg:px-10 lg:pb-32">
+      <section className="mx-auto max-w-3xl px-6 pt-8 pb-24 lg:px-10 lg:pt-12 lg:pb-32">
         {intro.length ? (
           <Reveal className="space-y-4">
             {intro.map((p) => (

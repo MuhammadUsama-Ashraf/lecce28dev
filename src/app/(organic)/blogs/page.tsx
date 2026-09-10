@@ -24,9 +24,10 @@ export default function BlogsPage() {
         kicker="Blogs"
         accent="All latest"
         intro="Naturally derived formulas that drive ingredient education and awareness — what is in the bottle, why it is there, and how to use it."
+        wave
       />
 
-      <section className="mx-auto max-w-[1400px] px-6 pb-24 lg:px-10 lg:pb-32">
+      <section className="mx-auto max-w-[1400px] px-6 pt-8 pb-24 lg:px-10 lg:pt-12 lg:pb-32">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           {journal.map((post, i) => (
             <Reveal key={post.slug} delay={i * 100} as="article">

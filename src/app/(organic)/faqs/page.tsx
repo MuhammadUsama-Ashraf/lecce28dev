@@ -16,9 +16,10 @@ export default function FaqPage() {
         kicker="FAQ's"
         accent="good to know"
         intro="Most frequent questions and answers"
+        wave
       />
 
-      <section className="mx-auto max-w-3xl px-6 pb-24 lg:px-10 lg:pb-32">
+      <section className="mx-auto max-w-3xl px-6 pt-8 pb-24 lg:px-10 lg:pt-12 lg:pb-32">
         <div className="divide-y divide-black/12 border-y border-black/12">
           {faqs.map((item, i) => (
             <Reveal key={item.q} delay={i * 50}>

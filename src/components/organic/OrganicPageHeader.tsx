@@ -27,9 +27,13 @@ export default function OrganicPageHeader({
           sizes="100vw"
           className="object-cover"
         />
-        <div className="relative flex h-[300px] flex-col items-center justify-center px-6 pt-[84px] text-center sm:h-[360px] lg:h-[400px]">
+        <div className="relative flex min-h-[300px] flex-col items-center justify-center px-6 pt-[84px] pb-24 text-center sm:min-h-[360px] lg:min-h-[400px] lg:pb-28">
           <h1 className="t-h2 text-ink">{kicker}</h1>
+          {accent ? <p className="t-editorial mt-1 text-ink">{accent}</p> : null}
           <span className="mt-5 block h-px w-16 bg-ink/60" />
+          {intro ? (
+            <p className="t-body mx-auto mt-6 max-w-xl text-ink-soft">{intro}</p>
+          ) : null}
         </div>
 
         <svg
