@@ -86,19 +86,19 @@ export const testimonials = [
   },
   {
     name: "Chris",
-    avatar: "/images/img-03.webp",
+    avatar: "/images/img-05.webp",
     quote:
       "This body butter is the bomb. I play tennis and my feet need extra attention...this does the job! And it smells awesome. When are you launching a fragrance to match?",
   },
   {
     name: "Courtney",
-    avatar: "/images/img-04.webp",
+    avatar: "/images/img-03.webp",
     quote:
       "This body wash and lotion are pure magic! I've tried so many products in the past, but these are on another level.",
   },
   {
     name: "Tyler",
-    avatar: "/images/img-05.webp",
+    avatar: "/images/img-04.webp",
     quote:
       "I've finally found my holy grail in skincare with this body wash and lotion! I've struggled with dry skin for years. And It's been a constant battle to find products that actually work without irritating my skin. These have been a meaningful change!",
   },
