@@ -6,7 +6,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { hero } from "@/content/site";
 
 const SLIDE_MS = 7000;
-const CORAL = "#f0a184";
 
 /** Two hero slides. On phones each is rebuilt as a tall layout with live text,
  *  because the wide desktop artwork has its copy baked in and collapses to an
@@ -84,23 +83,22 @@ function Slide({ active, children }: { active: boolean; children: React.ReactNod
 function EditorialSlide() {
   return (
     <Link href="/about-us" aria-label="Natural Body Butter — learn more" className="block h-full">
-      {/* phones: the jar on the coral ground, offer set live beneath */}
-      <div className="relative h-full lg:hidden" style={{ background: CORAL }}>
-        <div className="absolute inset-x-0 top-[6%] h-[56%]">
-          <Image
-            src="/products/body-butter.webp"
-            alt="Natural Body Butter Fumo di Cocco"
-            fill
-            priority
-            sizes="100vw"
-            className="object-contain mix-blend-multiply"
-          />
-        </div>
-        <div className="absolute inset-x-0 bottom-0 px-6 pb-12 text-center">
-          <p className="text-[15px] leading-snug tracking-[0.02em] text-black">
+      {/* phones: square product photography crops to portrait almost losslessly,
+          unlike the wide slide artwork which over-zooms at any setting */}
+      <div className="relative h-full overflow-hidden lg:hidden">
+        <Image
+          src="/products/body-butter.webp"
+          alt="Natural Body Butter Fumo di Cocco"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/60 via-black/15 to-transparent px-6 pb-11 text-center">
+          <p className="text-[15px] leading-snug tracking-[0.02em] text-white">
             Free Shipping For Purchases Over $100
           </p>
-          <span className="mt-4 inline-block rounded-full border border-black px-8 py-3 text-[14px] tracking-[0.08em] text-black uppercase">
+          <span className="mx-auto mt-4 inline-block rounded-full border border-white px-8 py-3 text-[14px] tracking-[0.08em] text-white uppercase">
             {hero.cta}
           </span>
         </div>
@@ -129,25 +127,23 @@ function TrifectaSlide() {
       aria-label="Where luxury and self-care collide — shop"
       className="block h-full"
     >
-      <div className="relative h-full overflow-hidden bg-[var(--oc-sand)] lg:hidden">
-        <div className="px-6 pt-9">
-          <h2 className="text-[27px] leading-[1.12] font-light text-black">
+      <div className="relative h-full overflow-hidden lg:hidden">
+        <Image
+          src="/products/body-bundle.png"
+          alt="The Lecce 28 body care trifecta"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/65 via-black/25 to-transparent px-6 pb-11">
+          <h2 className="text-[26px] leading-[1.12] font-light text-white">
             WHERE LUXURY
             <br />
-            <span className="text-[21px]">&amp; SELF-CARE COLLIDE</span>
+            <span className="text-[20px]">&amp; SELF-CARE COLLIDE</span>
           </h2>
-          <p className="mt-3 max-w-[19rem] text-[13px] leading-[1.5] text-black/75">
+          <p className="mt-3 max-w-[20rem] text-[13px] leading-[1.5] text-white/90">
             {hero.body}
           </p>
-        </div>
-        <div className="absolute inset-x-0 bottom-0 h-[44%]">
-          <Image
-            src="/products/body-bundle.png"
-            alt="The Lecce 28 body care trifecta"
-            fill
-            sizes="100vw"
-            className="object-contain object-bottom mix-blend-multiply"
-          />
         </div>
       </div>
 
