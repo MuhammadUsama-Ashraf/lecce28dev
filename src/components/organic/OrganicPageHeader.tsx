@@ -1,4 +1,5 @@
 import Image from "next/image";
+import WaveDivider from "./WaveDivider";
 
 /** Inner-page masthead in the front page's language: uppercase sans over an
  *  italic serif line, optionally on a full-bleed image band. */
@@ -36,22 +37,7 @@ export default function OrganicPageHeader({
           ) : null}
         </div>
 
-        <svg
-          viewBox="0 0 1440 190"
-          preserveAspectRatio="none"
-          aria-hidden
-          className="absolute bottom-0 left-0 h-[90px] w-full lg:h-[130px]"
-        >
-          <path
-            d="M0,120 C220,40 420,180 700,110 C960,45 1180,150 1440,80 L1440,190 L0,190 Z"
-            fill="var(--oc-sand)"
-            opacity="0.7"
-          />
-          <path
-            d="M0,150 C240,80 440,200 720,140 C980,85 1200,175 1440,120 L1440,190 L0,190 Z"
-            fill="#ffffff"
-          />
-        </svg>
+        <WaveDivider color="#ffffff" className="h-[110px] lg:h-[170px]" />
       </section>
     );
   }

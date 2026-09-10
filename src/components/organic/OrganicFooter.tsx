@@ -1,10 +1,27 @@
+import Image from "next/image";
 import Link from "next/link";
+import WaveDivider from "./WaveDivider";
 import { footerLinks, site, SUPPORT_EMAIL } from "@/content/site";
 import FooterSubscribe from "./FooterSubscribe";
 
 export default function OrganicFooter() {
   return (
-    <footer className="bg-black text-white">
+    <>
+      {/* Sand band the dune wave resolves into, ahead of the footer proper */}
+      <section className="relative overflow-hidden bg-sand-300">
+        <WaveDivider color="#ffffff" position="top" className="h-[120px] lg:h-[180px]" />
+        <div className="relative flex flex-col items-center px-6 pt-[150px] pb-20 text-center lg:pt-[220px] lg:pb-24">
+          <h2 className="t-h2 text-ink">Get In Touch With Us</h2>
+          <Link
+            href="/contact-us"
+            className="t-nav mt-8 rounded-full border border-ink px-9 py-3 text-ink transition-colors hover:bg-ink hover:text-white"
+          >
+            Contact Us
+          </Link>
+        </div>
+      </section>
+
+      <footer className="bg-black text-white">
       <div className="mx-auto max-w-[1400px] px-6 pt-16 lg:px-10">
         <div className="grid gap-12 lg:grid-cols-[1fr_0.5fr_0.7fr_1.1fr]">
           <div>
@@ -67,14 +84,19 @@ export default function OrganicFooter() {
           </div>
         </div>
 
-        <div className="mt-16 w-full overflow-hidden">
-          <span className="t-display block w-full text-center leading-[0.8] text-white select-none">
-            LECCE 28
-          </span>
+        <div className="mt-16 flex w-full justify-center">
+          <Image
+            src="/images/logo.png"
+            alt="Lecce 28"
+            width={274}
+            height={70}
+            className="h-12 w-auto brightness-0 invert lg:h-16"
+          />
         </div>
 
         <p className="t-body py-8 text-center text-white/50">{site.copyright}</p>
       </div>
-    </footer>
+      </footer>
+    </>
   );
 }
