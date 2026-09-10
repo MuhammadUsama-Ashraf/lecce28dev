@@ -1,18 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav, SUPPORT_EMAIL } from "@/content/site";
 import { useCart } from "@/components/cart/CartProvider";
 
 /** Transparent nav floating over the hero, solid once the page scrolls. */
 export default function OrganicHeader() {
+  const pathname = usePathname();
   const { count, open } = useCart();
-  const [solid, setSolid] = useState(false);
+  // Only the home page has a full-bleed hero to float over.
+  const overHero = pathname === "/";
+  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setSolid(window.scrollY > window.innerHeight * 0.75);
+    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.75);
     const id = requestAnimationFrame(onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
@@ -21,6 +25,7 @@ export default function OrganicHeader() {
     };
   }, []);
 
+  const solid = !overHero || scrolled;
   const tone = solid ? "text-black" : "text-white";
 
   return (

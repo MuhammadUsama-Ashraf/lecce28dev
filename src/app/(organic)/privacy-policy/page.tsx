@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import PolicyPage from "@/components/ui/PolicyPage";
+import OrganicPolicyPage from "@/components/organic/OrganicPolicyPage";
 import { privacy, privacyIntro } from "@/content/policies";
 
 export const metadata: Metadata = {
@@ -9,5 +9,12 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPolicyPage() {
-  return <PolicyPage title="Privacy Policy" intro={privacyIntro} sections={privacy} />;
+  return (
+    <OrganicPolicyPage
+      kicker="Privacy Policy"
+      accent="your data, handled with care"
+      intro={privacyIntro}
+      sections={privacy}
+    />
+  );
 }
