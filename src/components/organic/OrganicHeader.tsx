@@ -34,10 +34,23 @@ export default function OrganicHeader() {
           : "bg-white/95 backdrop-blur-md lg:bg-transparent"
       }`}
     >
-      <div className="bg-black py-2.5 text-center">
-        <p className="text-[13px] tracking-[0.01em] text-white sm:text-[14px]">
-          {site.announcement}.
-        </p>
+      {/* Scrolling bar: the run is duplicated and the keyframe travels -50%,
+          so the loop is seamless. */}
+      <div className="relative overflow-hidden bg-black py-2.5">
+        <div className="flex w-max animate-marquee">
+          {Array.from({ length: 2 }).map((_, group) => (
+            <div key={group} className="flex shrink-0" aria-hidden={group === 1}>
+              {Array.from({ length: 6 }).map((__, i) => (
+                <span
+                  key={i}
+                  className="px-10 text-[13px] tracking-[0.01em] whitespace-nowrap text-white sm:text-[14px]"
+                >
+                  {site.announcement}.
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="mx-auto flex max-w-[1400px] items-center gap-8 px-6 py-5 lg:px-10">

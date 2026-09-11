@@ -126,6 +126,9 @@ body {
   .tilt {
     transform: none !important;
   }
+  .animate-marquee {
+    animation: none !important;
+  }
 }
 
 /* ──────────────────────────────────────────────────────────────
