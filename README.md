@@ -169,16 +169,17 @@ the parked replica keeps its own typography untouched.
 
 ## Deployment
 
-The whole site is statically prerendered, so it deploys anywhere that serves a
-Next.js build:
+Deployed on **Vercel**. Import the repository and accept the framework defaults —
+no configuration and no environment variables are required. Every push to
+`master` triggers a deploy.
 
 ```bash
-npm run build
-npm start
+npm run build   # production build
+npm start       # serve it locally
 ```
 
-On Vercel, import the repository and accept the defaults — no configuration and
-no environment variables are required.
+All 23 routes are prerendered at build time, and `next/image` optimisation is
+handled by the platform.
 
 ---
 
