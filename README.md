@@ -169,17 +169,21 @@ the parked replica keeps its own typography untouched.
 
 ## Deployment
 
-Deployed on **Vercel**. Import the repository and accept the framework defaults —
-no configuration and no environment variables are required. Every push to
-`master` triggers a deploy.
+Deployed on **Vercel**, which builds from `master` on every push.
+
+The build is a **static export** — `npm run build` writes plain HTML to `out/`,
+and the Vercel project is configured to publish that directory.
 
 ```bash
-npm run build   # production build
-npm start       # serve it locally
+npm run build   # writes out/
+npx serve out   # preview it locally
 ```
 
-All 23 routes are prerendered at build time, and `next/image` optimisation is
-handled by the platform.
+To switch to Vercel's native Next.js runtime instead — which restores
+`next/image` optimisation — set **Framework Preset** to *Next.js* and clear the
+**Output Directory** override in the project settings, then remove `output` and
+`images.unoptimized` from `next.config.ts`. Changing one without the other
+breaks the deploy.
 
 ---
 
