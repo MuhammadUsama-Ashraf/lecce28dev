@@ -1,0 +1,15 @@
+# Vercel uses this, not .gitignore — without it the whole working folder ships.
+node_modules
+.next
+out
+
+# scraped reference material and source design art, not part of the build
+_reference
+Organic Skincare & Beauty Clinic Framer Template
+.netlify
+
+# stray local files
+h1.png
+h2.png
+header.jpeg
+tsconfig.tsbuildinfo
