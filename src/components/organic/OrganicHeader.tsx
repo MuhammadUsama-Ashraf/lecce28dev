@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { nav, SUPPORT_EMAIL } from "@/content/site";
+import { nav, site, SUPPORT_EMAIL } from "@/content/site";
 import { useCart } from "@/components/cart/CartProvider";
 
 /** Solid on phones, where a transparent nav is unreadable against the hero
@@ -34,6 +34,12 @@ export default function OrganicHeader() {
           : "bg-white/95 backdrop-blur-md lg:bg-transparent"
       }`}
     >
+      <div className="bg-black py-2.5 text-center">
+        <p className="text-[13px] tracking-[0.01em] text-white sm:text-[14px]">
+          {site.announcement}.
+        </p>
+      </div>
+
       <div className="mx-auto flex max-w-[1400px] items-center gap-8 px-6 py-5 lg:px-10">
         <Link href="/" aria-label="Lecce 28 home" className={`shrink-0 ${tone}`}>
           <Image

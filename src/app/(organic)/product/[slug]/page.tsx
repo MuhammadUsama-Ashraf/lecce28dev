@@ -52,7 +52,7 @@ export default async function ProductPage({ params }: Params) {
 
   return (
     <main className="flex-1">
-      <div className="mx-auto max-w-[1400px] px-6 pt-32 lg:px-10 lg:pt-40">
+      <div className="mx-auto max-w-[1400px] px-6 pt-44 lg:px-10 lg:pt-52">
         <nav className="t-body text-[#7A7A7A]">
           <Link href="/shop" className="hover:text-black">
             Shop

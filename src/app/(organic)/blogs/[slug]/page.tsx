@@ -34,7 +34,7 @@ export default async function BlogPostPage({ params }: Params) {
 
   return (
     <main className="flex-1">
-      <article className="mx-auto max-w-3xl px-6 pt-36 pb-24 lg:px-10 lg:pt-44 lg:pb-32">
+      <article className="mx-auto max-w-3xl px-6 pt-48 pb-24 lg:px-10 lg:pt-56 lg:pb-32">
         <Reveal immediate>
           <Link href="/blogs" className="t-body text-[#7A7A7A] hover:text-black">
             ← Blogs

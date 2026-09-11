@@ -26,7 +26,7 @@ export default function OrganicHero() {
   }, []);
 
   return (
-    <div className="bg-white pt-[84px] lg:pt-0">
+    <div className="bg-white pt-[124px] lg:pt-0">
       <section
         aria-roledescription="carousel"
         aria-label="Lecce 28 highlights"
@@ -87,12 +87,12 @@ function EditorialSlide() {
           lands centre, with the offer set live over it */}
       <div className="relative h-full overflow-hidden lg:hidden">
         <Image
-          src="/hero/h1-mobile.jpg"
+          src="/hero/h1-phone2.jpg"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[56%_center]"
+          className="object-cover object-center"
         />
         <div className="absolute inset-x-0 bottom-0 px-5 pb-10 text-center">
           <p className="text-[15px] leading-snug tracking-[0.02em] text-black">
@@ -129,11 +129,11 @@ function TrifectaSlide() {
     >
       <div className="relative h-full overflow-hidden lg:hidden">
         <Image
-          src="/hero/h2.jpg"
+          src="/hero/h2-phone.jpg"
           alt=""
           fill
           sizes="100vw"
-          className="object-cover object-[72%_center]"
+          className="object-cover object-center"
         />
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#efe7dc] via-[#efe7dc]/85 to-transparent px-5 pb-10 pt-20">
           <h2 className="text-[25px] leading-[1.12] font-light text-black">

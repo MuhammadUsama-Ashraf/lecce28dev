@@ -29,7 +29,7 @@ export default function OrganicPageHeader({
           className="object-cover"
         />
         {/* Title and rule only — the live banners carry nothing else. */}
-        <div className="relative flex min-h-[380px] flex-col items-center justify-start px-6 pt-[150px] pb-[210px] text-center sm:min-h-[440px] lg:min-h-[500px] lg:pt-[180px] lg:pb-[260px]">
+        <div className="relative flex min-h-[380px] flex-col items-center justify-start px-6 pt-[196px] pb-[210px] text-center sm:min-h-[440px] lg:min-h-[500px] lg:pt-[226px] lg:pb-[260px]">
           <h1 className="t-h1 text-ink">{kicker}</h1>
           <span className="mt-5 block h-px w-16 bg-ink/60" />
         </div>
@@ -51,7 +51,7 @@ export default function OrganicPageHeader({
           className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-black/40" />
-        <div className="relative mx-auto max-w-[1400px] px-6 pt-40 pb-24 text-center text-white lg:px-10 lg:pt-52 lg:pb-32">
+        <div className="relative mx-auto max-w-[1400px] px-6 pt-52 pb-24 text-center text-white lg:px-10 lg:pt-64 lg:pb-32">
           <h1 className="t-h1">{kicker}</h1>
           <p className="t-editorial mt-1">{accent}</p>
           {intro ? (
@@ -63,7 +63,7 @@ export default function OrganicPageHeader({
   }
 
   return (
-    <section className="mx-auto max-w-[1400px] px-6 pt-36 pb-14 text-center lg:px-10 lg:pt-44 lg:pb-16">
+    <section className="mx-auto max-w-[1400px] px-6 pt-48 pb-14 text-center lg:px-10 lg:pt-56 lg:pb-16">
       <h1 className="t-h1">{kicker}</h1>
       <p className="t-editorial mt-1">{accent}</p>
       {intro ? (
