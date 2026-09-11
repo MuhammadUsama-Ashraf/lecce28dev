@@ -129,19 +129,19 @@ function TrifectaSlide() {
     >
       <div className="relative h-full overflow-hidden lg:hidden">
         <Image
-          src="/hero/h2-phone.jpg"
+          src="/hero/h2-phone2.jpg"
           alt=""
           fill
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#efe7dc] via-[#efe7dc]/85 to-transparent px-5 pb-10 pt-20">
-          <h2 className="text-[25px] leading-[1.12] font-light text-black">
+        <div className="absolute inset-x-0 bottom-0 bg-[#efe7dc] px-5 pb-8 pt-6 shadow-[0_-28px_36px_-12px_#efe7dc]">
+          <h2 className="text-[23px] leading-[1.12] font-light text-black">
             WHERE LUXURY
             <br />
-            <span className="text-[19px]">&amp; SELF-CARE COLLIDE</span>
+            <span className="text-[17px]">&amp; SELF-CARE COLLIDE</span>
           </h2>
-          <p className="mt-3 text-[13px] leading-[1.5] text-black/75">{hero.body}</p>
+          <p className="mt-2 text-[12px] leading-[1.45] text-black/70">{hero.body}</p>
         </div>
       </div>
 
