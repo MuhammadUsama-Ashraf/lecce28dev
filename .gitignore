@@ -48,3 +48,6 @@ Organic Skincare & Beauty Clinic Framer Template/
 
 # Netlify CLI build artifacts
 .netlify/
+
+.vercel
+.env*
