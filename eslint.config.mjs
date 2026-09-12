@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated Prisma client and leftover host build output.
+    "src/generated/**",
+    ".netlify/**",
+    ".vercel/**",
   ]),
 ]);
 
