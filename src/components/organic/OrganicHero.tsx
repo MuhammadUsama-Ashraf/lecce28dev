@@ -99,7 +99,7 @@ function EditorialSlide() {
             className="object-cover object-center"
           />
         </div>
-        <div className="flex shrink-0 flex-col items-center bg-white px-5 pt-7 text-center">
+        <div className="flex shrink-0 flex-col items-center bg-white px-5 pt-7 pb-8 text-center">
           <p className="font-mono text-[13.5px] leading-snug tracking-[0.02em] text-black">
             Free Shipping For Purchases Over $100
           </p>
@@ -144,11 +144,11 @@ function TrifectaSlide() {
       aria-label="Where luxury and self-care collide — shop"
       className="block h-full"
     >
-      {/* same split as slide one: the trifecta on top, the headline on its own
-          ground beneath. The desktop artwork carries its copy baked in, so the
-          crop takes only the product half. */}
-      <div className="flex h-full flex-col lg:hidden">
-        <div className="relative h-[62%] overflow-hidden">
+      {/* same band as slide one — an identical 2130:1001 crop, so both hero
+          images stand the same height. The copy and pager dots baked into the
+          artwork were painted out of the backdrop to free the frame. */}
+      <div className="flex h-full flex-col justify-center bg-[#efe7dc] lg:hidden">
+        <div className="relative aspect-[2130/1001] w-full shrink-0 overflow-hidden">
           <Image
             src="/hero/h2-phone4.jpg"
             alt=""
@@ -157,7 +157,7 @@ function TrifectaSlide() {
             className="object-cover object-center"
           />
         </div>
-        <div className="flex flex-1 flex-col justify-center bg-[#efe7dc] px-5 pb-7">
+        <div className="flex shrink-0 flex-col bg-[#efe7dc] px-5 pt-6 pb-8">
           <h2 className="text-[19px] leading-[1.15] font-light text-black">
             WHERE LUXURY &amp; SELF-CARE COLLIDE
           </h2>
