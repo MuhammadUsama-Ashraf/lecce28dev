@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import OrganicPageHeader from "@/components/organic/OrganicPageHeader";
 import ShopGrid from "@/components/organic/ShopGrid";
+import { getShopProducts } from "@/lib/catalog";
+
+// Reads live catalogue data, so it renders per request.
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -8,7 +12,9 @@ export const metadata: Metadata = {
     "Your daily dose of nature's nourishment for a luminous complexion. Shop the Lecce 28 body care collection.",
 };
 
-export default function ShopPage() {
+export default async function ShopPage() {
+  const products = await getShopProducts();
+
   return (
     <main className="flex-1">
       <OrganicPageHeader kicker="Shop" accent="" wave />
@@ -21,7 +27,7 @@ export default function ShopPage() {
           </p>
         </div>
 
-        <ShopGrid />
+        <ShopGrid products={products} />
       </section>
     </main>
   );

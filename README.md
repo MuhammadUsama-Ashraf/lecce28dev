@@ -61,19 +61,42 @@ drawer, quantity controls and a free-shipping threshold.
 git clone https://github.com/Hatch-Social-Inc/lecce28.git
 cd lecce28
 npm install
+cp .env.example .env.local     # then fill in the values below
+npm run db:migrate             # creates the tables
+npm run db:seed                # imports the catalogue and the first owner
 npm run dev
 ```
 
-Open **http://localhost:3000**. There are no environment variables to set.
+Open **http://localhost:3000** for the store and **/admin** for the back office.
+
+### Environment
+
+`.env.local` drives development; the same keys live in the Vercel project for
+production. Development and production must point at **different** databases.
+
+| Variable | What it is |
+|---|---|
+| `DATABASE_URL` | Neon **pooled** connection — what the app queries through |
+| `DIRECT_URL` | Neon **direct** connection — migrations only, pgbouncer cannot hold their locks |
+| `SESSION_SECRET` | 32+ random bytes signing the admin session cookie |
+| `STRIPE_SECRET_KEY` | Test key locally, live key in production |
+| `STRIPE_WEBHOOK_SECRET` | From `stripe listen` locally, from the dashboard in production |
+| `BLOB_READ_WRITE_TOKEN` | Vercel Blob, for product image uploads |
+| `NEXT_PUBLIC_SITE_URL` | Absolute origin used for Stripe redirects |
 
 ### Scripts
 
 | Command | Does |
 |---|---|
 | `npm run dev` | Development server with hot reload |
-| `npm run build` | Production build — prerenders all 23 routes |
+| `npm run build` | Generates the Prisma client, then builds |
 | `npm start` | Serve the production build |
 | `npm run lint` | ESLint across the project |
+| `npm run db:migrate` | Create and apply a migration (development) |
+| `npm run db:deploy` | Apply pending migrations (production) |
+| `npm run db:seed` | Import the catalogue, settings and first owner |
+| `npm run db:studio` | Prisma Studio, a table browser |
+| `npm run db:reset` | Drop, re-migrate and re-seed the development database |
 
 Requires Node 20 or newer (developed on 22).
 
@@ -92,8 +115,54 @@ Requires Node 20 or newer (developed on 22).
 /faqs                   Questions, delivery table, returns
 /privacy-policy         Privacy policy
 /terms-conditions       Terms and conditions
+/checkout/success       Order confirmation after Stripe
 /classic                Parked replica of the original site
+
+/admin                  Overview — revenue, recent orders, low stock
+/admin/orders           Every order, filterable, searchable
+/admin/orders/[id]      One order: items, addresses, status, notes, history
+/admin/products         Catalogue
+/admin/products/[id]    Product editor with image uploads
+/admin/promo-codes      Codes customers type at checkout
+/admin/sales            Scheduled markdowns, storewide or per product
+/admin/settings         Shipping, tax and order numbering
+/admin/staff            People and roles (owner only)
+
+/api/cart/quote         Server-side pricing for the bag
+/api/checkout           Creates the pending order and the Stripe session
+/api/webhooks/stripe    The only thing that marks an order paid
 ```
+
+---
+
+## The store backend
+
+**Postgres (Neon) · Prisma · Stripe Checkout · Vercel Blob**
+
+Every amount is stored and calculated in integer cents. The browser only ever
+sends slugs and quantities — prices, sale markdowns, promo discounts, shipping
+and tax are all recomputed server-side in `src/lib/pricing.ts` before anything
+reaches Stripe, so a tampered cart cannot change a total.
+
+**Orders** are written as `PENDING` when checkout opens and only become `PAID`
+when Stripe's signed webhook says so; the success page never marks anything
+paid. That same webhook decrements stock and counts the promo redemption, and
+it is idempotent, because Stripe retries.
+
+**Discounts** come in two shapes. A *sale* is a scheduled markdown that needs no
+customer action and shows a struck-through price; where several cover the same
+product the customer gets the lowest result. A *promo code* is typed at
+checkout and can carry a minimum subtotal, a redemption cap, a date window and a
+product allow-list.
+
+**Roles** — `OWNER` manages people, `ADMIN` runs the store, `STAFF` handles
+orders and stock but cannot move prices, publish products, cancel or refund.
+Sessions are signed JWTs in an httpOnly cookie (`src/lib/session.ts`), and every
+page and action re-checks the user through `src/lib/dal.ts` rather than trusting
+the cookie alone — a deactivated account stops working immediately.
+
+**History** — product, promo, sale, order and staff changes are written to an
+audit log with who did what, and order history is shown on the order itself.
 
 ---
 
@@ -171,19 +240,26 @@ the parked replica keeps its own typography untouched.
 
 Deployed on **Vercel**, which builds from `master` on every push.
 
-The build is a **static export** — `npm run build` writes plain HTML to `out/`,
-and the Vercel project is configured to publish that directory.
+The store runs on Vercel's Node runtime — the admin, checkout and the Stripe
+webhook all need a server, so there is no static export any more.
+
+**Once per environment:**
+
+1. Add the environment variables above to the Vercel project. Give *Preview* and
+   *Development* the development database, *Production* the production one.
+2. Run `npm run db:deploy` against the production database to apply migrations,
+   then `npm run db:seed` once to create the first owner account.
+3. Point a Stripe webhook at `https://<your-domain>/api/webhooks/stripe` for
+   `checkout.session.completed`, `checkout.session.expired`,
+   `checkout.session.async_payment_succeeded`,
+   `checkout.session.async_payment_failed` and `charge.refunded`, then put its
+   signing secret in `STRIPE_WEBHOOK_SECRET`.
+
+**Locally**, forward webhooks with the Stripe CLI:
 
 ```bash
-npm run build   # writes out/
-npx serve out   # preview it locally
+stripe listen --forward-to localhost:3000/api/webhooks/stripe
 ```
-
-To switch to Vercel's native Next.js runtime instead — which restores
-`next/image` optimisation — set **Framework Preset** to *Next.js* and clear the
-**Output Directory** override in the project settings, then remove `output` and
-`images.unoptimized` from `next.config.ts`. Changing one without the other
-breaks the deploy.
 
 ---
 

@@ -7,18 +7,19 @@ import OrganicProductCard from "@/components/organic/OrganicProductCard";
 import SectionTitle from "@/components/organic/SectionTitle";
 import AddToCart from "@/components/ui/AddToCart";
 import Reveal from "@/components/ui/Reveal";
-import { formatPrice, getProduct, products } from "@/content/products";
+import { formatPrice } from "@/content/products";
+import { getShopProduct, getShopProducts } from "@/lib/catalog";
 import { SUPPORT_EMAIL } from "@/content/site";
 
 type Params = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }));
-}
+// Prices, stock and sales change from the admin, so product pages render per
+// request rather than being frozen at build time.
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProduct(slug);
+  const product = await getShopProduct(slug);
   if (!product) return {};
   return {
     title: `${product.name} ${product.scent}`,
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function ProductPage({ params }: Params) {
   const { slug } = await params;
-  const product = getProduct(slug);
+  const [product, products] = await Promise.all([getShopProduct(slug), getShopProducts()]);
   if (!product) notFound();
 
   const related = products.filter((p) => p.slug !== product.slug).slice(0, 3);

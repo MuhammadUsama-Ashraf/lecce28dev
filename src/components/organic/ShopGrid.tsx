@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import OrganicProductCard from "./OrganicProductCard";
 import Reveal from "@/components/ui/Reveal";
-import { products, type Product } from "@/content/products";
+import type { Product } from "@/content/products";
 import { SUPPORT_EMAIL } from "@/content/site";
 
 type Scent = "all" | "fumo" | "unscented";
@@ -39,7 +39,7 @@ const matchesCategory = (p: Product, category: Category) => {
   return category === "bundle" ? p.vessel === "trio" : p.vessel !== "trio";
 };
 
-export default function ShopGrid() {
+export default function ShopGrid({ products }: { products: Product[] }) {
   const [scent, setScent] = useState<Scent>("all");
   const [category, setCategory] = useState<Category>("all");
   const [sort, setSort] = useState<Sort>("featured");
@@ -51,7 +51,7 @@ export default function ShopGrid() {
     if (sort === "price-asc") return [...list].sort((a, b) => a.price - b.price);
     if (sort === "price-desc") return [...list].sort((a, b) => b.price - a.price);
     return list;
-  }, [scent, category, sort]);
+  }, [products, scent, category, sort]);
 
   const reset = () => {
     setScent("all");

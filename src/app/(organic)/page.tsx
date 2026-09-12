@@ -5,8 +5,11 @@ import OrganicLatestBlogs from "@/components/organic/OrganicLatestBlogs";
 import OrganicPhilosophy from "@/components/organic/OrganicPhilosophy";
 import OrganicProductCard from "@/components/organic/OrganicProductCard";
 import Reveal from "@/components/ui/Reveal";
-import { products } from "@/content/products";
+import { getShopProducts } from "@/lib/catalog";
 import { philosophy } from "@/content/site";
+
+// Reads live catalogue data, so it renders per request.
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Lecce28 — Elevate your beauty. Embrace your wellness.",
@@ -14,7 +17,9 @@ export const metadata: Metadata = {
     "Naturally derived body care from Lecce 28: chamomile and olive oil body wash, jojoba intense therapy lotion, natural body butter and scrub, scented in Fumo di Cocco.",
 };
 
-export default function OrganicHome() {
+export default async function OrganicHome() {
+  const products = await getShopProducts();
+
   return (
     <main className="flex-1">
       <OrganicHero />

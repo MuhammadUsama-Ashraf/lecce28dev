@@ -1,0 +1,285 @@
+// Lecce 28 store schema.
+//
+// Money is stored as integer cents everywhere — floats round badly once
+// percentage discounts and tax get involved, and Stripe speaks cents too.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+// Prisma 7 keeps connection URLs out of the schema — see prisma.config.ts for
+// the migration URL, and src/lib/db.ts for the pooled runtime connection.
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  OWNER // can manage staff
+  ADMIN // full store access
+  STAFF // orders and stock, no pricing or staff changes
+}
+
+enum ProductStatus {
+  DRAFT
+  ACTIVE
+  ARCHIVED
+}
+
+enum DiscountType {
+  PERCENT // value is 1..100
+  FIXED // value is an amount in cents
+}
+
+enum OrderStatus {
+  PENDING // checkout started, payment not confirmed
+  PAID
+  FULFILLED
+  CANCELLED
+  REFUNDED
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  role         Role      @default(STAFF)
+  isActive     Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  auditLogs AuditLog[]
+
+  @@index([email])
+}
+
+model Product {
+  id     String        @id @default(cuid())
+  slug   String        @unique
+  name   String
+  status ProductStatus @default(ACTIVE)
+
+  // Pricing
+  priceCents     Int
+  compareAtCents Int? // struck-through "was" price
+  currency       String @default("usd")
+
+  // Copy
+  scent       String?
+  tagline     String?
+  description String?
+  ingredients String?
+  directions  String?
+  includes    String[] @default([])
+
+  // Fragrance notes, split the way the label prints them
+  fragranceTop    String?
+  fragranceMiddle String?
+  fragranceBase   String?
+
+  // Physical
+  sizeLabel  String?
+  weight     String?
+  dimensions String?
+
+  // Presentation — mirrors the fields the storefront already renders
+  vessel      String? // pump | jar | trio, drives the 3D vessel
+  accent      String?
+  labelKicker String?
+  labelTitle  String?
+  heroImage   String?
+
+  // Merchandising
+  rating       Float?
+  reviewCount  Int     @default(0)
+  stock        Int     @default(0)
+  trackStock   Boolean @default(true)
+  featured     Boolean @default(false)
+  position     Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  images     ProductImage[]
+  orderItems OrderItem[]
+  sales      SaleProduct[]
+  promoCodes PromoCodeProduct[]
+
+  @@index([status, position])
+  @@index([slug])
+}
+
+model ProductImage {
+  id        String   @id @default(cuid())
+  productId String
+  url       String
+  alt       String?
+  position  Int      @default(0)
+  createdAt DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId, position])
+}
+
+model PromoCode {
+  id           String       @id @default(cuid())
+  code         String       @unique // stored upper-cased
+  description  String?
+  discountType DiscountType
+  value        Int // percent (1..100) or cents
+
+  minSubtotalCents Int?
+  maxRedemptions   Int? // null = unlimited
+  perCustomerLimit Int?
+  timesRedeemed    Int  @default(0)
+
+  startsAt DateTime?
+  endsAt   DateTime?
+  isActive Boolean   @default(true)
+
+  // When false the code only applies to the linked products.
+  appliesToAll Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  products PromoCodeProduct[]
+  orders   Order[]
+
+  @@index([code])
+  @@index([isActive, endsAt])
+}
+
+model PromoCodeProduct {
+  promoCodeId String
+  productId   String
+
+  promoCode PromoCode @relation(fields: [promoCodeId], references: [id], onDelete: Cascade)
+  product   Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([promoCodeId, productId])
+}
+
+/// A scheduled markdown — storewide or on selected products. Unlike a promo
+/// code it needs no customer action and shows as a struck-through price.
+model Sale {
+  id           String       @id @default(cuid())
+  name         String
+  discountType DiscountType
+  value        Int
+
+  startsAt DateTime?
+  endsAt   DateTime?
+  isActive Boolean   @default(true)
+
+  appliesToAll Boolean @default(false)
+  badge        String? // e.g. "Summer Sale"
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  products SaleProduct[]
+
+  @@index([isActive, startsAt, endsAt])
+}
+
+model SaleProduct {
+  saleId    String
+  productId String
+
+  sale    Sale    @relation(fields: [saleId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([saleId, productId])
+}
+
+model Order {
+  id     String      @id @default(cuid())
+  number String      @unique // human-facing, e.g. L28-1042
+  status OrderStatus @default(PENDING)
+
+  email        String
+  customerName String?
+  phone        String?
+
+  subtotalCents Int
+  discountCents Int    @default(0)
+  shippingCents Int    @default(0)
+  taxCents      Int    @default(0)
+  totalCents    Int
+  currency      String @default("usd")
+
+  promoCodeId   String?
+  promoCodeText String? // kept even if the code is later deleted
+
+  shippingAddress Json?
+  billingAddress  Json?
+
+  stripeSessionId       String? @unique
+  stripePaymentIntentId String?
+
+  notes       String?
+  placedAt    DateTime  @default(now())
+  paidAt      DateTime?
+  fulfilledAt DateTime?
+  cancelledAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  items     OrderItem[]
+  promoCode PromoCode?  @relation(fields: [promoCodeId], references: [id])
+
+  @@index([status, placedAt])
+  @@index([email])
+}
+
+model OrderItem {
+  id      String @id @default(cuid())
+  orderId String
+
+  // The product may later be renamed, repriced or deleted — an order line has
+  // to keep what was actually bought, so the copy is denormalised here.
+  productId      String?
+  slug           String
+  name           String
+  imageUrl       String?
+  unitPriceCents Int
+  qty            Int
+  lineTotalCents Int
+
+  order   Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+
+  @@index([orderId])
+}
+
+/// Single row (id = "store") holding shop-wide settings the admin can edit.
+model StoreSetting {
+  id                    String   @id @default("store")
+  freeShippingOverCents Int      @default(10000)
+  flatShippingCents     Int      @default(900)
+  taxPercent            Float    @default(0)
+  currency              String   @default("usd")
+  orderPrefix           String   @default("L28")
+  nextOrderNumber       Int      @default(1001)
+  updatedAt             DateTime @updatedAt
+}
+
+model AuditLog {
+  id       String   @id @default(cuid())
+  userId   String?
+  action   String // created | updated | deleted | status_changed …
+  entity   String // product | promo_code | sale | order | user
+  entityId String
+  summary  String?
+  meta     Json?
+  createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([entity, entityId])
+  @@index([createdAt])
+}

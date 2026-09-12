@@ -32,6 +32,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# generated Prisma client
+/src/generated
 
 # vercel
 .vercel
@@ -51,6 +55,10 @@ Organic Skincare & Beauty Clinic Framer Template/
 
 .vercel
 .env*
+!.env.example
+
+# generated Prisma client
+/src/generated
 
 # supplied hero source art (derived crops live in public/hero)
 /Banner 1.png
