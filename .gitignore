@@ -51,3 +51,6 @@ Organic Skincare & Beauty Clinic Framer Template/
 
 .vercel
 .env*
+
+# supplied hero source art (derived crops live in public/hero)
+/Banner 1.png
