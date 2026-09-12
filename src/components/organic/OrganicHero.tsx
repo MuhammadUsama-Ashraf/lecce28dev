@@ -34,7 +34,7 @@ export default function OrganicHero() {
         onMouseLeave={() => (paused.current = false)}
         onFocus={() => (paused.current = true)}
         onBlur={() => (paused.current = false)}
-        className="relative h-[min(calc(100vw/1.08+160px),620px)] w-full overflow-hidden bg-[var(--oc-sand)] lg:aspect-[2361/1001] lg:h-auto"
+        className="relative h-[420px] w-full overflow-hidden bg-[var(--oc-sand)] sm:h-[480px] lg:aspect-[2361/1001] lg:h-auto"
       >
         {/* only needed where the nav floats over the artwork */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-10 hidden h-28 bg-gradient-to-b from-white/70 to-transparent lg:block" />
@@ -88,7 +88,7 @@ function EditorialSlide() {
           the copy on its own ground underneath — overlaying it would either
           cover the label or sit on the jar's dark glass */}
       <div className="flex h-full flex-col lg:hidden">
-        <div className="relative flex-1 overflow-hidden">
+        <div className="relative h-[62%] overflow-hidden">
           <Image
             src="/hero/banner1-phone2.jpg"
             alt=""
@@ -98,7 +98,7 @@ function EditorialSlide() {
             className="object-cover object-center"
           />
         </div>
-        <div className="flex h-[160px] shrink-0 flex-col items-center justify-center bg-white px-5 pb-7 text-center">
+        <div className="flex flex-1 flex-col items-center justify-center bg-white px-5 pb-7 text-center">
           <p className="font-mono text-[13.5px] leading-snug tracking-[0.02em] text-black">
             Free Shipping For Purchases Over $100
           </p>
@@ -147,7 +147,7 @@ function TrifectaSlide() {
           ground beneath. The desktop artwork carries its copy baked in, so the
           crop takes only the product half. */}
       <div className="flex h-full flex-col lg:hidden">
-        <div className="relative flex-1 overflow-hidden">
+        <div className="relative h-[62%] overflow-hidden">
           <Image
             src="/hero/h2-phone4.jpg"
             alt=""
@@ -156,7 +156,7 @@ function TrifectaSlide() {
             className="object-cover object-center"
           />
         </div>
-        <div className="flex h-[190px] shrink-0 flex-col justify-center bg-[#efe7dc] px-5 pb-7">
+        <div className="flex flex-1 flex-col justify-center bg-[#efe7dc] px-5 pb-7">
           <h2 className="text-[19px] leading-[1.15] font-light text-black">
             WHERE LUXURY &amp; SELF-CARE COLLIDE
           </h2>
