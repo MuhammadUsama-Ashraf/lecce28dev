@@ -34,7 +34,7 @@ export default function OrganicHero() {
         onMouseLeave={() => (paused.current = false)}
         onFocus={() => (paused.current = true)}
         onBlur={() => (paused.current = false)}
-        className="relative h-[460px] w-full overflow-hidden bg-[var(--oc-sand)] sm:h-[520px] lg:aspect-[1901/727] lg:h-auto"
+        className="relative h-[420px] w-full overflow-hidden bg-[var(--oc-sand)] sm:h-[480px] lg:aspect-[2361/1001] lg:h-auto"
       >
         {/* only needed where the nav floats over the artwork */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-10 hidden h-28 bg-gradient-to-b from-white/70 to-transparent lg:block" />
@@ -79,41 +79,57 @@ function Slide({ active, children }: { active: boolean; children: React.ReactNod
   );
 }
 
-/** Editorial half beside the coral product panel. */
+/** Editorial face beside the coral product panel. The supplied artwork carries
+ *  no baked-in copy, so the offer and button are set live at every size. */
 function EditorialSlide() {
   return (
     <Link href="/about-us" aria-label="Natural Body Butter — learn more" className="block h-full">
-      {/* phones: the same slide, cover-cropped tall so the face/coral split
-          lands centre, with the offer set live over it */}
-      <div className="relative h-full overflow-hidden lg:hidden">
-        <Image
-          src="/hero/h1-phone2.jpg"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-x-0 bottom-0 px-5 pb-10 text-center">
-          <p className="text-[15px] leading-snug tracking-[0.02em] text-black">
+      {/* phones: the banner narrowed to the jar plus a slice of the face, with
+          the copy on its own ground underneath — overlaying it would either
+          cover the label or sit on the jar's dark glass */}
+      <div className="flex h-full flex-col lg:hidden">
+        <div className="relative h-[62%] overflow-hidden">
+          <Image
+            src="/hero/banner1-phone2.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+        <div className="flex flex-1 flex-col items-center justify-center bg-white px-5 pb-7 text-center">
+          <p className="font-mono text-[13.5px] leading-snug tracking-[0.02em] text-black">
             Free Shipping For Purchases Over $100
           </p>
-          <span className="mt-4 inline-block rounded-full border border-black px-9 py-3 text-[14px] tracking-[0.08em] text-black uppercase">
+          <span className="mt-3.5 inline-block rounded-full border border-black px-9 py-3 text-[14px] tracking-[0.08em] text-black uppercase">
             {hero.cta}
           </span>
         </div>
       </div>
 
-      {/* lg and up: the original wide slide */}
+      {/* lg and up: the full banner, copy centred on the coral panel */}
       <div className="relative hidden h-full lg:block">
         <Image
-          src="/hero/h1.jpg"
+          src="/hero/banner1.jpg"
           alt=""
           fill
           priority
           sizes="100vw"
           className="object-cover object-center"
         />
+        {/* The jar runs almost to the bottom of the coral panel, and its base is
+            dark glass that black copy cannot sit on. A short fade to the coral
+            sampled from the artwork clears a footing without touching the
+            label. */}
+        <div className="absolute right-0 bottom-0 left-[49%] flex h-[26%] flex-col justify-end bg-gradient-to-t from-[#f0aa86] from-50% to-transparent px-6 pb-8 text-center">
+          <p className="font-mono text-[16px] tracking-[0.02em] text-black">
+            Free Shipping For Purchases Over $100
+          </p>
+          <span className="mx-auto mt-4 inline-block rounded-full border border-black px-11 py-3.5 text-[15px] tracking-[0.1em] text-black uppercase transition-colors hover:bg-black hover:text-white">
+            {hero.cta}
+          </span>
+        </div>
       </div>
     </Link>
   );
@@ -127,25 +143,24 @@ function TrifectaSlide() {
       aria-label="Where luxury and self-care collide — shop"
       className="block h-full"
     >
-      <div className="relative h-full overflow-hidden lg:hidden">
-        <Image
-          src="/hero/h2-phone3.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        {/* copy sits over the empty backdrop beside the products, as on the
-            live site, rather than on a band beneath the photo */}
-        <div className="absolute inset-y-0 left-0 flex w-[62%] flex-col justify-center bg-gradient-to-r from-[#efe7dc]/92 via-[#efe7dc]/70 to-transparent px-5">
-          <h2 className="text-[21px] leading-[1.14] font-light text-black">
-            WHERE LUXURY
-            <br />
-            <span className="text-[16px]">&amp; SELF-CARE COLLIDE</span>
+      {/* same split as slide one: the trifecta on top, the headline on its own
+          ground beneath. The desktop artwork carries its copy baked in, so the
+          crop takes only the product half. */}
+      <div className="flex h-full flex-col lg:hidden">
+        <div className="relative h-[62%] overflow-hidden">
+          <Image
+            src="/hero/h2-phone4.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+        <div className="flex flex-1 flex-col justify-center bg-[#efe7dc] px-5 pb-7">
+          <h2 className="text-[19px] leading-[1.15] font-light text-black">
+            WHERE LUXURY &amp; SELF-CARE COLLIDE
           </h2>
-          <p className="mt-2.5 max-w-[13rem] text-[10.5px] leading-[1.5] text-black/70">
-            {hero.body}
-          </p>
+          <p className="mt-2 text-[11px] leading-[1.55] text-black/70">{hero.body}</p>
         </div>
       </div>
 
