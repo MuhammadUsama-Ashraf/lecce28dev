@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import {
   Cormorant_Garamond,
   Inter,
-  Instrument_Serif,
   JetBrains_Mono,
   Poppins,
   Montserrat,
@@ -28,13 +27,6 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-});
-
-const editorial = Instrument_Serif({
-  variable: "--font-editorial",
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["italic", "normal"],
 });
 
 const poppins = Poppins({
@@ -68,7 +60,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${display.variable} ${sans.variable} ${mono.variable} ${montserrat.variable} ${editorial.variable} ${poppins.variable} h-full antialiased`}
+      className={`${display.variable} ${sans.variable} ${mono.variable} ${montserrat.variable} ${poppins.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-sand-50 text-ink">
         <CartProvider>

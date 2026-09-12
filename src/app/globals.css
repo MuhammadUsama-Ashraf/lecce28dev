@@ -192,20 +192,20 @@ body {
   line-height: 1.2;
 }
 
+/* Accent lines beside the section headings. These used an italic serif from
+   the template; the brand sets everything in Montserrat. */
 .organic .t-editorial {
-  font-family: var(--font-editorial), Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(2.5rem, 5vw, 72px);
-  line-height: 1;
+  font-family: var(--font-montserrat), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.9rem, 3.5vw, 46px);
+  line-height: 1.1;
 }
 
 .organic .t-editorial-sm {
-  font-family: var(--font-editorial), Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(2rem, 3.33vw, 48px);
-  line-height: 1;
+  font-family: var(--font-montserrat), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.4rem, 2.4vw, 30px);
+  line-height: 1.3;
 }
 
 .organic .t-nav {
