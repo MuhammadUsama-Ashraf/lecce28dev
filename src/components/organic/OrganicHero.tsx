@@ -34,7 +34,7 @@ export default function OrganicHero() {
         onMouseLeave={() => (paused.current = false)}
         onFocus={() => (paused.current = true)}
         onBlur={() => (paused.current = false)}
-        className="relative h-[420px] w-full overflow-hidden bg-[var(--oc-sand)] sm:h-[480px] lg:aspect-[2361/1001] lg:h-auto"
+        className="relative h-[380px] w-full overflow-hidden bg-[var(--oc-sand)] sm:h-[460px] lg:aspect-[2361/1001] lg:h-auto"
       >
         {/* only needed where the nav floats over the artwork */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-10 hidden h-28 bg-gradient-to-b from-white/70 to-transparent lg:block" />
@@ -84,11 +84,12 @@ function Slide({ active, children }: { active: boolean; children: React.ReactNod
 function EditorialSlide() {
   return (
     <Link href="/about-us" aria-label="Natural Body Butter — learn more" className="block h-full">
-      {/* phones: the banner narrowed to the jar plus a slice of the face, with
-          the copy on its own ground underneath — overlaying it would either
-          cover the label or sit on the jar's dark glass */}
-      <div className="flex h-full flex-col lg:hidden">
-        <div className="relative h-[62%] overflow-hidden">
+      {/* phones: the banner cropped so the face/coral split lands dead centre,
+          which forces a wide window because the jar sits at the far right. The
+          copy goes on its own ground underneath — overlaying it would either
+          cover the label or sit on the jar's dark glass. */}
+      <div className="flex h-full flex-col justify-center bg-white lg:hidden">
+        <div className="relative aspect-[2130/1001] w-full shrink-0 overflow-hidden">
           <Image
             src="/hero/banner1-phone2.jpg"
             alt=""
@@ -98,7 +99,7 @@ function EditorialSlide() {
             className="object-cover object-center"
           />
         </div>
-        <div className="flex flex-1 flex-col items-center justify-center bg-white px-5 pb-7 text-center">
+        <div className="flex shrink-0 flex-col items-center bg-white px-5 pt-7 text-center">
           <p className="font-mono text-[13.5px] leading-snug tracking-[0.02em] text-black">
             Free Shipping For Purchases Over $100
           </p>
